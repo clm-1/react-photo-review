@@ -1,4 +1,8 @@
-import { onAuthStateChanged } from 'firebase/auth'
+import { 
+  createUserWithEmailAndPassword, 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  signOut} from 'firebase/auth'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { auth } from '../firebase'
 
@@ -12,10 +16,24 @@ const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  // Register user
+  const register = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
+
+  // Login user
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  const logout = async () => {
+    await signOut(auth)
+  }
+
   useEffect(() => {
     // listen for changes to auth state
     onAuthStateChanged(auth, (user) => {
-      console.log('checking user')
+      console.log('checking user: ', user)
       setCurrentUser(user)
       setLoading(false)
     })
@@ -24,6 +42,9 @@ const AuthContextProvider = ({ children }) => {
   const values = {
     currentUser,
     loading,
+    register,
+    logout,
+    login,
   }
 
   return (
