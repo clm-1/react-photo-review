@@ -9,6 +9,10 @@
 	text-align: center;
 }
 
+.dropzoneWrapper p {
+  margin-bottom: 0;
+}
+
 .dragAccept {
   background-color: #d4edda;
   border-color: #c3e6cb;
