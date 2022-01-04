@@ -1,0 +1,22 @@
+.dropzoneWrapper {
+  background-color: #eee;
+	border-radius: 4px;
+	border: 2px dashed #ccc;
+
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 1.5rem 1rem;
+	text-align: center;
+}
+
+.dragAccept {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.dragReject {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}

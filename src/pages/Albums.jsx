@@ -1,9 +1,10 @@
 import React from 'react'
+import UploadPhotos from '../components/UploadPhotos'
 
 const Albums = () => {
   return (
     <div>
-      hej
+      <UploadPhotos />
     </div>
   )
 }
