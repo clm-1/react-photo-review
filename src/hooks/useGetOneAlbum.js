@@ -10,13 +10,10 @@ const useGetOneAlbum = (albumId) => {
     try {
       const docRef = doc(db, 'albums', albumId)
       const album = await getDoc(docRef)
-      console.log(album.data())
-      console.log('album: ', album)
       const albumData = {
         ...album.data(),
         id: album.id
       }
-      console.log('albumData', albumData)
       setData(albumData)
     } catch (error) {
       console.log('error', error.message)
