@@ -14,7 +14,7 @@ const useUploadPhoto = () => {
   const [uploadProgress, setUploadProgress] = useState(null)
   // current image will be used to display which image is currently being uploaded
   const [currentPhoto, setCurrentPhoto] = useState(0)
- 
+
   const uploadPhotos = async (image, transferredBytes, combinedSize) => {
     // construct filename to save image as
     const fileName = `${Date.now()}-${image.name}`
