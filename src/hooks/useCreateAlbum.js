@@ -10,7 +10,7 @@ const useCreateAlbum = () => {
   const [isCreating, setIsCreating] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
-  const create = async (albumName) => {
+  const create = async (albumName, owner = null, original = true) => {
     const collectionRef = collection(db, 'albums')
     setError(null)
     setIsError(false)
@@ -21,7 +21,8 @@ const useCreateAlbum = () => {
       await addDoc(collectionRef, {
         created: serverTimestamp(),
         name: albumName,
-        owner: currentUser.uid,
+        owner: !owner ? currentUser.uid : owner,
+        original,
       })
       setIsSuccess(true)
     } catch (error) {

@@ -4,6 +4,7 @@ import RequireAuth from './components/RequireAuth'
 import Albums from './pages/Albums'
 import Home from './pages/Home'
 import { Container } from 'react-bootstrap'
+import OneAlbum from './pages/OneAlbum'
 
 function App() {
   return (
@@ -15,6 +16,12 @@ function App() {
         <Route path="/albums" element={
           <RequireAuth>
             <Albums />
+          </RequireAuth>
+        } />
+
+        <Route path="/albums/:albumId" element={
+          <RequireAuth>
+            <OneAlbum />
           </RequireAuth>
         } />
       </Routes>

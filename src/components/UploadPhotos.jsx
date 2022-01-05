@@ -3,7 +3,6 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
 import styles from '../css/UploadPhotos.module.css'
 import useUploadPhoto from '../hooks/useUploadPhoto'
-
 import { collectionGroup, doc, collection, getDocs, query, where, updateDoc, deleteField } from 'firebase/firestore'
 import { db } from '../firebase'
 
