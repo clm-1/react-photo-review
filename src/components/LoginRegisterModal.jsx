@@ -17,7 +17,7 @@ const LoginRegisterModal = ({ setShowLoginModal }) => {
         <div onClick={() => setShowLoginModal(false)} className={styles.closeModalWrapper}>
           <i className="far fa-times-circle"></i>
         </div>
-        {register ? <RegisterForm setRegister={setRegister} /> : <LoginForm setRegister={setRegister} />}
+        {register ? <RegisterForm setRegister={setRegister} setShowLoginModal={setShowLoginModal} /> : <LoginForm setRegister={setRegister} setShowLoginModal={setShowLoginModal} />}
       </div>
     </div>
   )

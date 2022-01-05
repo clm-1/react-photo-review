@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 import styles from '../css/LoginRegisterModal.module.css'
 
-const RegisterForm = ({ setRegister }) => {
+const RegisterForm = ({ setRegister, setShowLoginModal }) => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   const emailRef = useRef()
   const passwordRef = useRef()
   const confirmPasswordRef = useRef()
@@ -17,6 +19,8 @@ const RegisterForm = ({ setRegister }) => {
 
     try {
       await register(emailRef.current.value, passwordRef.current.value)
+      setShowLoginModal(false)
+      navigate('/albums')
     } catch (error) {
       console.log(error.message)
     } finally {
