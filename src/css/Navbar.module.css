@@ -1,0 +1,13 @@
+.navbarWrapper {
+  z-index: 2000;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  height: 6vh;
+  max-height: 40px;
+  padding: 0 .5rem;
+}

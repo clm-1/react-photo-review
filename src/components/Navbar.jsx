@@ -1,9 +1,11 @@
 import React from 'react'
+import styles from '../css/Navbar.module.css'
 
-const Navbar = () => {
+const Navbar = ({ setShowLoginModal }) => {
   return (
-    <div>
-      Nav
+    <div className={styles.navbarWrapper}>
+      <div>LOGO</div>
+      <div onClick={() => setShowLoginModal(true)}>Sign in</div>
     </div>
   )
 }

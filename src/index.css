@@ -1,7 +1,58 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
+/* @import 'bootstrap/dist/css/bootstrap.min.css'; */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.pageContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+.progress {
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  font-size: .75rem;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+}
+
+.bg-success {
+  opacity: 1;
+  background-color: rgb(44, 128, 44) !important;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #0d6efd;
+  transition: width .6s ease;
+}
+
+.progress-bar-striped {
+  background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  background-size: 1rem 1rem;
+}
+
+
