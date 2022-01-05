@@ -5,14 +5,17 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
-  background-color: white;
+  max-width: 1400px;
+  background-color: rgb(41, 47, 49);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   height: 6vh;
   max-height: 40px;
-  padding: 0 .5rem;
+  padding: 0 1rem;
+  color: rgb(208, 230, 227);
 }
 
 .signInBtn {
+  color: rgb(208, 230, 227);
   background: none;
   border: none;
   font-size: .95rem;
