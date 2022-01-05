@@ -5,12 +5,14 @@ import Albums from './pages/Albums'
 import Home from './pages/Home'
 import { Container } from 'react-bootstrap'
 import OneAlbum from './pages/OneAlbum'
+import ReviewAlbum from './pages/ReviewAlbum'
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/review-album/:ownerId/:albumId" element={<ReviewAlbum />} />
 
         {/* Protected */}
         <Route path="/albums" element={

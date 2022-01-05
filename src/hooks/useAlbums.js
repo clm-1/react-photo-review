@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase'
-import { collection, getDocs, where, query } from 'firebase/firestore'
+import { collection, getDocs, where, query, orderBy } from 'firebase/firestore'
 import { useAuthContext } from '../contexts/AuthContext'
 
 const useAlbums = () => {
@@ -9,7 +9,7 @@ const useAlbums = () => {
   const [loading, setLoading] = useState(true)
 
   const getAlbumsForUser = async () => {
-    // if (!currentUser) return
+    if (!currentUser) return
 
     // get reference to collection
 		try {

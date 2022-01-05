@@ -23,6 +23,12 @@ const useCreateAlbum = () => {
         name: albumName,
         owner: !owner ? currentUser.uid : owner,
         original,
+        photos: {
+          11: { created: 2, name: 'img.png'},
+          12: { created: 1, name: 'photo.png'},
+          13: { created: 45, name: 'photo2.png'},
+          14: { created: 4, name: 'photo3.png'},
+        }
       })
       setIsSuccess(true)
     } catch (error) {
