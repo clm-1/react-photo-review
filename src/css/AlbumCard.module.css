@@ -1,0 +1,33 @@
+.albumCardWrapper {
+  width: 100%;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.albumCardImgWrapper {
+  background: chocolate;
+  width: 100%;
+}
+
+.albumCardImgWrapper:after {
+  content: '';
+  display: block;
+  padding-top: 60%;
+}
+
+.albumCardInfo {
+  padding: .1rem;
+}
+
+.albumCardInfo .title {
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.albumCardInfo p {
+  margin-top: .2rem;
+  font-size: .8rem;
+  font-style: italic;
+}

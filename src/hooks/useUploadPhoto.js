@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
-import { v4 as uuidv4 } from 'uuid'
 import { db, storage } from '../firebase'
 import { useAuthContext } from '../contexts/AuthContext'
 
-const useUploadPhoto = () => {
+const useUploadPhoto = (albumId) => {
   const { currentUser } = useAuthContext()
   const [error, setError] = useState(null)
   const [isError, setIsError] = useState(false)
@@ -47,6 +46,7 @@ const useUploadPhoto = () => {
         path: storageRef.fullPath,
         size: image.size,
         type: image.type,
+        albums: [albumId],
         url,
       })
 

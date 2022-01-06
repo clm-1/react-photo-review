@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useParams } from 'react-router'
+import useAlbum from '../hooks/useAlbum'
 import useCreateAlbum from '../hooks/useCreateAlbum'
-import useGetOneAlbum from '../hooks/useGetOneAlbum'
 
 const ReviewAlbum = () => {
   const { ownerId, albumId } = useParams()
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
-  const album = useGetOneAlbum(albumId)
+  const album = useAlbum(albumId)
 
   useEffect(() => {
     console.log(album.data)

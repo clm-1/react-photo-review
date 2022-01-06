@@ -1,17 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import AlbumCard from './AlbumCard'
+import styles from '../css/AlbumList.module.css'
 
 const AlbumList = ({ albums }) => {
-  const navigate = useNavigate()
-
-  const handleAlbumClick = (albumId) => {
-    console.log('album:', albumId)
-    navigate(`/albums/${albumId}`)
-  }
 
   return (
-    <div>
-      { albums.map(album => <div onClick={() => handleAlbumClick(album.id)} key={album.id}>{album.name}</div>)}
+    <div className={styles.albumListWrapper}>
+      { albums.map(album => <AlbumCard key={album.id} album={album}/>)}
     </div>
   )
 }

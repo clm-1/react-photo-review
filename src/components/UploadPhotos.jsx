@@ -8,8 +8,8 @@ import { db } from '../firebase'
 
 
 
-const UploadPhotos = () => {
-  const uploadPhotos = useUploadPhoto()
+const UploadPhotos = ({ albumId }) => {
+  const uploadPhotos = useUploadPhoto(albumId)
 
   const queryTest = async () => {
     console.log('test')

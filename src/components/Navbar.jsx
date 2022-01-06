@@ -24,7 +24,7 @@ const Navbar = ({ setShowLoginModal }) => {
             <i className={`fas ${!showDropdown ? 'fa-angle-down' : 'fa-angle-up'}`}></i>
           </button>
           {showDropdown ?
-            <div className={styles.dropdownMenu}>
+            <div className={styles.dropdownMenu} onClick={() => setShowDropdown(false)}>
               <NavLink className={styles.menuItem} to="/albums">Albums</NavLink>
               <button onClick={handleLogout} className={styles.menuItem}>Logout</button>
             </div> : ''}

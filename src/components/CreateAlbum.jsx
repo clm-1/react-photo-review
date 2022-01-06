@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import useCreateAlbum from '../hooks/useCreateAlbum'
+import styles from "../css/CreateAlbum.module.css"
 
 const CreateAlbum = () => {
   const createAlbum = useCreateAlbum()
@@ -13,11 +14,13 @@ const CreateAlbum = () => {
   }
 
   return (
-    <div>
+    <div className={styles.createAlbumWrapper}>
       <form onSubmit={handleCreateAlbum}>
-        <label htmlFor="album-name">Enter new album name</label>
-        <input type="text" name="album-name" ref={albumNameInputRef} required/>
-        <button type="submit">Create</button>
+        <label htmlFor="album-name">Create new album</label>
+        <div className={styles.inputWrapper}>
+          <input type="text" name="album-name" ref={albumNameInputRef} placeholder="Album name" required />
+          <button type="submit">+</button>
+        </div>
       </form>
     </div>
   )

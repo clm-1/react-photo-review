@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import RequireAuth from './components/RequireAuth'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import Albums from './pages/Albums'
 import Home from './pages/Home'
 import { Container } from 'react-bootstrap'
-import OneAlbum from './pages/OneAlbum'
+import Album from './pages/Album'
 import ReviewAlbum from './pages/ReviewAlbum'
 import Navbar from './components/Navbar'
 import LoginRegisterModal from './components/LoginRegisterModal'
@@ -30,11 +31,13 @@ function App() {
 
           <Route path="/albums/:albumId" element={
             <RequireAuth>
-              <OneAlbum />
+              <Album />
             </RequireAuth>
           } />
         </Routes>
       </div>
+
+      <ReactQueryDevtools initialIsOpen={false} />
     </div>
   )
 }
