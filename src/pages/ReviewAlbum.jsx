@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useParams } from 'react-router'
 import useAlbum from '../hooks/useAlbum'
+import useAlbumPhotos from '../hooks/useAlbumPhotos'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 
 const ReviewAlbum = () => {
@@ -9,6 +10,11 @@ const ReviewAlbum = () => {
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
   const album = useAlbum(albumId)
+  const albumPhotos = useAlbumPhotos(albumId)
+
+  useEffect(() => {
+    console.log(albumPhotos.data)
+  }, [albumPhotos.data])
 
   useEffect(() => {
     console.log(album.data)
@@ -27,7 +33,7 @@ const ReviewAlbum = () => {
       console.log(`log: ${name}`)
     } else name = album.data.name
 
-    createAlbum.create(`${name}-${date}`, album.data.owner, false)
+    createAlbum.create(`${name}-${date}`, album.data.owner, false, albumPhotos.data)
   }
 
   return (

@@ -26,7 +26,14 @@ button:disabled {
   opacity: .5;
 }
 
+/* PROGRESS BAR */
+
 .progress {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  width: 90%;
   display: flex;
   height: 1rem;
   overflow: hidden;

@@ -1,0 +1,52 @@
+/* PHOTO LIST */
+
+.photoListWrapper {
+  margin-top: .5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+}
+
+/* PHOTO CARD */
+
+.photoCardWrapper {
+  width: 100%;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.photoCardImgWrapper {
+  position: relative;
+  background: chocolate;
+  width: 100%;
+}
+
+.photoCardImgWrapper:after {
+  content: '';
+  display: block;
+  padding-top: 60%;
+}
+
+.photoCardImgWrapper img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoCardInfo {
+  padding: .1rem;
+}
+
+.photoCardInfo .title {
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.photoCardInfo p {
+  margin-top: .2rem;
+  font-size: .8rem;
+  font-style: italic;
+}

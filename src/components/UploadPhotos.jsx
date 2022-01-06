@@ -74,19 +74,15 @@ const UploadPhotos = ({ albumId }) => {
       >
         <input {...getInputProps()} />
 
-        {
+          {
           isDragActive
             ? (isDragAccept ? <p>Drop the photos!</p> : <p>One or more photos will not be uploaded</p>)
-            : <p>Drop photos here to upload</p>
-        }
+            : <p>Drop photos here</p>
+          }
 
         {uploadPhotos.uploadProgress !== null && <ProgressBar variant="success" animated label={`${uploadPhotos.currentPhoto + 1}/${acceptedFiles.length}`} now={uploadPhotos.uploadProgress} />}
 
       </div>
-
-      <button onClick={queryTest}>Test Query</button>
-      <button onClick={secondQueryTest}>Test Query 2</button>
-      <button onClick={queryTestDeleteField}>Test Delete Field</button>
     </>
   )
 }
