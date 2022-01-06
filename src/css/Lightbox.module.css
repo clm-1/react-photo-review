@@ -50,3 +50,23 @@
   right: 0;
   transform: translateX(50%);
 }
+
+.lightBoxControlls {
+  position: absolute;
+  /* background: rgba(0, 0, 0, 0.315); */
+  bottom: 0;
+  padding: 2rem 2rem; 
+  max-width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  height: 60px;
+  border-radius: 20px;
+  transform: translateY(40%);
+}
+
+.lightBoxControlls i {
+  font-size: 3.5rem;
+  color: rgba(173, 173, 173, 0.63);
+}

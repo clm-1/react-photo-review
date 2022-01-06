@@ -7,8 +7,8 @@ const PhotoCard = ({ photo, index }) => {
   const { setPhotoToShow } = usePhotoContext()
 
   const handlePhotoClick = () => {
-    console.log(index[0])
-    setPhotoToShow({ photo, current: index[0], total: index[1]})
+    console.log(index)
+    setPhotoToShow({ current: index })
   }
 
   return (

@@ -10,7 +10,7 @@ import Lightbox from '../components/Lightbox'
 import { usePhotoContext } from '../contexts/PhotoContext'
 
 const Album = () => {
-  const { photoToShow } = usePhotoContext()
+  const { photoToShow, setCurrentAlbum } = usePhotoContext()
   const { albumId } = useParams()
   const { currentUser } = useAuthContext()
   const album = useAlbum(albumId)
@@ -22,6 +22,7 @@ const Album = () => {
 
   useEffect(() => {
     console.log('photos: ', albumPhotos.data)
+    if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
   }, [albumPhotos.data])
 
   return (

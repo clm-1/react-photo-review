@@ -8,10 +8,16 @@ const usePhotoContext = () => {
 
 const PhotoContextProvider = ({ children }) => {
   const [photoToShow, setPhotoToShow] = useState(null)
+  const [chosenPhotos, setChosenPhotos] = useState([])
+  const [currentAlbum, setCurrentAlbum] = useState(null)
 
   const values = {
     photoToShow,
-    setPhotoToShow
+    setPhotoToShow,
+    chosenPhotos,
+    setChosenPhotos,
+    currentAlbum,
+    setCurrentAlbum
   }
 
   return (
