@@ -9,7 +9,7 @@ const RegisterForm = ({ setRegister, setShowLoginModal }) => {
   const emailRef = useRef()
   const passwordRef = useRef()
   const confirmPasswordRef = useRef()
-  const { register } = useAuthContext()
+  const { register, setShowRegisterTab } = useAuthContext()
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -43,7 +43,7 @@ const RegisterForm = ({ setRegister, setShowLoginModal }) => {
       </form>
       <div className={styles.modalInfoWrapper}>
         <p>Already have an account?</p>
-        <button onClick={() => setRegister(false)}>Click here to sign in</button>
+        <button onClick={() => setShowRegisterTab(false)}>Click here to sign in</button>
       </div>
     </div>
   )

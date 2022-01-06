@@ -1,14 +1,16 @@
 .navbarWrapper {
   z-index: 2000;
   position: fixed;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1400px;
-  background-color: rgb(41, 47, 49);
+  background: rgb(41, 47, 49);
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   height: 6vh;
+  min-height: 35px;
   max-height: 40px;
   padding: 0 1rem;
   color: rgb(208, 230, 227);
@@ -21,6 +23,12 @@
   font-size: .95rem;
 }
 
+.logoLink {
+  font-size: clamp(.7rem, calc(.6rem + 2.5vh), 1.25rem);
+  color: rgb(208, 230, 227);
+  text-decoration: none;
+}
+
 .navbarUserWrapper {
   position: relative;
   width: 200px;
@@ -30,7 +38,8 @@
 
 .navbarUser {
   z-index: 1;
-  background: white;
+  background: rgb(41, 47, 49);
+  color: rgb(208, 230, 227);
   position: relative;
   font-size: .9rem;
   display: flex;
@@ -38,7 +47,7 @@
   align-items: center;
   gap: .4rem;
   padding: .3rem .7rem;
-  border: 1px solid rgba(0, 0, 0, 0.527);
+  border: 1px solid rgb(130, 141, 140);
   border-radius: 5px;
 }
 
@@ -61,13 +70,13 @@
   display: flex;
   flex-direction: column;
   gap: .5rem;
-  background: rgb(255, 255, 255);
+  background: rgb(41, 47, 49);
   width: 100%;
   bottom: 0;
   left: 0;
-  border-radius: 5px;
-  border: 1px solid black;
-  transform: translateY(110%);
+  border-radius: 0 0 5px 5px;
+  border: 1px solid rgb(130, 141, 140);
+  transform: translateY(97%);
 }
 
 .menuItem {
@@ -75,7 +84,11 @@
   border: none;
   text-align: left;
   font-size: .95rem;
-  color: black;
+  color: rgb(208, 230, 227);
   text-decoration: none;
   font-weight: 400;
+}
+
+.menuItem:hover {
+  color: rgb(240, 245, 244);
 }

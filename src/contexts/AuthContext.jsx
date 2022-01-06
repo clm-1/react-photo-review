@@ -13,6 +13,7 @@ const useAuthContext = () => {
 }
 
 const AuthContextProvider = ({ children }) => {
+  const [showRegisterTab, setShowRegisterTab] = useState(false)
   const [currentUser, setCurrentUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -45,6 +46,8 @@ const AuthContextProvider = ({ children }) => {
     register,
     logout,
     login,
+    showRegisterTab,
+    setShowRegisterTab
   }
 
   return (

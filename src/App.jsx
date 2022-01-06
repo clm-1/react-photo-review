@@ -18,7 +18,7 @@ function App() {
         <Navbar setShowLoginModal={setShowLoginModal}/>
         { showLoginModal && <LoginRegisterModal setShowLoginModal={setShowLoginModal}/>}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} />} />
           <Route path="/review-album/:ownerId/:albumId" element={<ReviewAlbum />} />
 
           {/* Protected */}

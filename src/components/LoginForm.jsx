@@ -5,6 +5,7 @@ import styles from '../css/LoginRegisterModal.module.css'
 
 const LoginForm = ({ setRegister, setShowLoginModal }) => {
   const [loading, setLoading] = useState(false)
+  const { setShowRegisterTab } = useAuthContext()
   const navigate = useNavigate()
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -16,12 +17,13 @@ const LoginForm = ({ setRegister, setShowLoginModal }) => {
 
     try {
       await login(emailRef.current.value, passwordRef.current.value)
+      setLoading(false)
       setShowLoginModal(false)
       navigate('/albums')
     } catch (error) {
       console.log(error.message)
-    } finally {
       setLoading(false)
+    } finally {
     }
   }
 
@@ -38,7 +40,7 @@ const LoginForm = ({ setRegister, setShowLoginModal }) => {
       </form>
       <div className={styles.modalInfoWrapper}>
         <p>Don't have an account?</p>
-        <button onClick={() => setRegister(true)}>Click here to register</button>
+        <button onClick={() => setShowRegisterTab(true)}>Click here to register</button>
       </div>
     </div>
   )

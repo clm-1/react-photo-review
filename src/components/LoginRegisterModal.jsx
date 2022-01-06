@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import { useAuthContext } from '../contexts/AuthContext'
 import styles from '../css/LoginRegisterModal.module.css'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 
 const LoginRegisterModal = ({ setShowLoginModal }) => {
-  const [register, setRegister] = useState(false)
+  const { showRegisterTab, setShowRegisterTab } = useAuthContext()
 
   const handleOverlayClick = (e) => {
     e.stopPropagation()
     if (e.target.id === 'overlay') setShowLoginModal(false)
   }
+
+  useEffect(() => {
+    return () => {
+      setShowRegisterTab(false)
+    }
+  }, [])
 
   return (
     <div id="overlay" onClick={(e) => handleOverlayClick(e)} className={styles.loginRegisterModalOverlay}>
@@ -17,7 +24,7 @@ const LoginRegisterModal = ({ setShowLoginModal }) => {
         <div onClick={() => setShowLoginModal(false)} className={styles.closeModalWrapper}>
           <i className="far fa-times-circle"></i>
         </div>
-        {register ? <RegisterForm setRegister={setRegister} setShowLoginModal={setShowLoginModal} /> : <LoginForm setRegister={setRegister} setShowLoginModal={setShowLoginModal} />}
+        { showRegisterTab ? <RegisterForm setShowLoginModal={setShowLoginModal} /> : <LoginForm setShowLoginModal={setShowLoginModal} />}
       </div>
     </div>
   )
