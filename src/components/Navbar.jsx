@@ -19,7 +19,7 @@ const Navbar = ({ setShowLoginModal }) => {
       <NavLink className={styles.logoLink} to="/">A LOGO</NavLink>
       {currentUser
         ? <div className={styles.navbarUserWrapper}>
-          <button className={styles.navbarUser} onClick={() => setShowDropdown(true)}>
+          <button className={styles.navbarUser} onClick={() => setShowDropdown(!showDropdown)}>
             <p>{currentUser.email}</p>
             <i className={`fas ${!showDropdown ? 'fa-angle-down' : 'fa-angle-up'}`}></i>
           </button>
