@@ -1,0 +1,52 @@
+.lightboxWrapper {
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(3, 3, 3, 0.7);
+}
+
+.lightboxImgWrapper {
+  position: absolute;
+  cursor: pointer;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightboxImgWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.lightboxImgWrapper .lightboxArrow {
+  color: white;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.568);
+  background: rgba(119, 144, 158, 0.315);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lightboxArrow.left {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.lightboxArrow.right {
+  right: 0;
+  transform: translateX(50%);
+}

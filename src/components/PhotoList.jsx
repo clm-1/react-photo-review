@@ -7,7 +7,7 @@ const PhotoList = ({ photos }) => {
 
   return (
     <div className={styles.photoListWrapper}>
-      { photos.map(photo => <PhotoCard key={photo.id} photo={photo}/>)}
+      { photos.map((photo, i) => <PhotoCard key={photo.id} photo={photo} index={[i, photos.length]}/>)}
     </div>
   )
 }

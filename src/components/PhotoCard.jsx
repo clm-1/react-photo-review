@@ -1,10 +1,18 @@
 import React from 'react'
 import { createDateTimeString } from '../helpers/time'
 import styles from '../css/PhotoList.module.css'
+import { usePhotoContext } from '../contexts/PhotoContext'
 
-const PhotoCard = ({ photo }) => {
+const PhotoCard = ({ photo, index }) => {
+  const { setPhotoToShow } = usePhotoContext()
+
+  const handlePhotoClick = () => {
+    console.log(index[0])
+    setPhotoToShow({ photo, current: index[0], total: index[1]})
+  }
+
   return (
-    <div className={styles.photoCardWrapper}>
+    <div onClick={handlePhotoClick} className={styles.photoCardWrapper}>
       <div className={styles.photoCardImgWrapper}>
         <img src={photo.url} alt={photo.name}></img>
       </div>

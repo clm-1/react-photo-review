@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import AuthContextProvider from './contexts/AuthContext'
+import PhotoContextProvider from './contexts/PhotoContext'
 import './index.css'
 import App from './App'
 
@@ -21,7 +22,11 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthContextProvider>
-          <App />
+          <PhotoContextProvider>
+
+            <App />
+            
+          </PhotoContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </QueryClientProvider>
