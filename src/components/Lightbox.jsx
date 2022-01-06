@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import styles from '../css/Lightbox.module.css'
 
-const Lightbox = ({ photo }) => {
+const Lightbox = ({ photo, review = false }) => {
   const { setPhotoToShow, photoToShow, setChosenPhotos, chosenPhotos, currentAlbum } = usePhotoContext()
-  
+
   const handleLightboxClick = () => {
     setPhotoToShow(null)
   }
@@ -21,7 +21,7 @@ const Lightbox = ({ photo }) => {
       : [currentAlbum.length - 1, 1, 0]
 
     return setPhotoToShow(prev => (
-      { ...prev, current: prev.current !== check[0] ? prev.current + check[1] : check[2]}
+      { ...prev, current: prev.current !== check[0] ? prev.current + check[1] : check[2] }
     ))
   }
 
@@ -32,10 +32,10 @@ const Lightbox = ({ photo }) => {
     if (chosen && !chosenPhotos.includes(currentAlbum[photoToShow.current])) {
       console.log('photo added')
       setChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
-    }  
+    }
     if (photoToShow.current === currentAlbum.length - 1) return setPhotoToShow(null)
     setPhotoToShow(prev => (
-      { ...prev, current: prev.current !== currentAlbum.length - 1 ? prev.current + 1 : 0}
+      { ...prev, current: prev.current !== currentAlbum.length - 1 ? prev.current + 1 : 0 }
     ))
   }
 
@@ -49,10 +49,11 @@ const Lightbox = ({ photo }) => {
         <div onClick={(e) => handleArrowClick(e, 'right')} className={`${styles.lightboxArrow} ${styles.right}`}>
           <p>{`>`}</p>
         </div>
-        <div className={styles.lightBoxControlls}>
-          <i onClick={(e) => handleChoiceClick(e, false)} className="far fa-times-circle"></i>
-          <i onClick={(e) => handleChoiceClick(e, true)} className="far fa-check-circle"></i>
-        </div>
+        {review &&
+          <div className={styles.lightBoxControlls}>
+            <i onClick={(e) => handleChoiceClick(e, false)} className="far fa-times-circle"></i>
+            <i onClick={(e) => handleChoiceClick(e, true)} className="far fa-check-circle"></i>
+          </div>}
       </div>
     </div>
   )
