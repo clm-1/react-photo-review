@@ -9,6 +9,7 @@ import Album from './pages/Album'
 import ReviewAlbum from './pages/ReviewAlbum'
 import Navbar from './components/Navbar'
 import LoginRegisterModal from './components/LoginRegisterModal'
+import Review from './pages/Review'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -20,7 +21,7 @@ function App() {
         { showLoginModal && <LoginRegisterModal setShowLoginModal={setShowLoginModal}/>}
         <Routes>
           <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} />} />
-          <Route path="/review-album/:ownerId/:albumId" element={<ReviewAlbum />} />
+          <Route path="/review-album/:ownerId/:albumId" element={<Review />} />
 
           {/* Protected */}
           <Route path="/albums" element={
