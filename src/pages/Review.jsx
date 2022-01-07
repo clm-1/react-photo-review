@@ -39,7 +39,7 @@ const Review = () => {
   // Do checks and then create new album + add the new album to the chosen photos
   const handleSendReview = () => {
     if (!chosenPhotos || !chosenPhotos.length) return setPhotoReviewError('No photos chosen')
-    if ((chosenPhotos.length + notChosenPhotos.length) !== album.data.length) {
+    if ((chosenPhotos.length + notChosenPhotos.length) !== albumPhotos.data.length) {
       return setPhotoReviewError('You need to make a choice for each photo')
     }
 
@@ -59,6 +59,7 @@ const Review = () => {
       <button onClick={handleSendReview}>Send review</button>
       { albumPhotos.data && <PhotoList photos={albumPhotos.data} />}
       { photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} /> }
+      <p>{photoReviewError && photoReviewError}</p>
       <p>Photos in album: {albumPhotos.data && albumPhotos.data.length}</p>
       <p>Chosen photos: {chosenPhotos.length}</p>
       <p>Not chosen photos: {notChosenPhotos.length}</p>
