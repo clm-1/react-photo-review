@@ -7,6 +7,7 @@ const useAlbum = (albumId) => {
   const albumQuery = useFirestoreDocument(['album', albumId], albumRef, {
     subscribe: true,
   }, {
+    refetchOnMount: 'always',
     select(snapshot) {
       const id = snapshot.id
       return snapshot.exists() ? {id, ...snapshot.data()} : null
