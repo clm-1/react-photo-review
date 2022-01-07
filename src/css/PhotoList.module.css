@@ -50,3 +50,11 @@
   font-size: .8rem;
   font-style: italic;
 }
+
+.photoChosen {
+  border: 1px solid green;
+}
+
+.photoNotChosen {
+  border: 1px solid red;
+}

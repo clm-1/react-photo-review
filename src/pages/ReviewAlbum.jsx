@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useParams } from 'react-router'
+import { usePhotoContext } from '../contexts/PhotoContext'
 import useAlbum from '../hooks/useAlbum'
 import useAlbumPhotos from '../hooks/useAlbumPhotos'
 import useCreateAlbum from '../hooks/useCreateAlbum'

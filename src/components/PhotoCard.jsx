@@ -4,7 +4,7 @@ import styles from '../css/PhotoList.module.css'
 import { usePhotoContext } from '../contexts/PhotoContext'
 
 const PhotoCard = ({ photo, index }) => {
-  const { setPhotoToShow } = usePhotoContext()
+  const { setPhotoToShow, chosenPhotos, notChosenPhotos } = usePhotoContext()
 
   const handlePhotoClick = () => {
     console.log(index)
@@ -12,7 +12,12 @@ const PhotoCard = ({ photo, index }) => {
   }
 
   return (
-    <div onClick={handlePhotoClick} className={styles.photoCardWrapper}>
+    <div 
+      onClick={handlePhotoClick} 
+      className={`
+        ${styles.photoCardWrapper}
+        ${chosenPhotos.includes(photo) ? styles.photoChosen : ''}
+        ${notChosenPhotos.includes(photo) ? styles.photoNotChosen : ''}`}>
       <div className={styles.photoCardImgWrapper}>
         <img src={photo.url} alt={photo.name}></img>
       </div>

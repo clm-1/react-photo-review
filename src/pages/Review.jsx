@@ -10,7 +10,7 @@ import { usePhotoContext } from '../contexts/PhotoContext'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 
 const Review = () => {
-  const { photoToShow, setCurrentAlbum } = usePhotoContext()
+  const { photoToShow, setCurrentAlbum, notChosenPhotos } = usePhotoContext()
   const { ownerId, albumId } = useParams()
   const navigate = useNavigate()
   const createAlbum = useCreateAlbum()
@@ -51,6 +51,9 @@ const Review = () => {
       <button onClick={handleSendReview}>Send review</button>
       { albumPhotos.data && <PhotoList photos={albumPhotos.data} />}
       { photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} /> }
+      <p>Photos in album: {albumPhotos.data && albumPhotos.data.length}</p>
+      <p>Chosen photos: {chosenPhotos.length}</p>
+      <p>Not chosen photos: {notChosenPhotos.length}</p>
     </div>
   )
 }

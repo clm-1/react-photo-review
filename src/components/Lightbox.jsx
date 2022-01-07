@@ -3,7 +3,7 @@ import { usePhotoContext } from '../contexts/PhotoContext'
 import styles from '../css/Lightbox.module.css'
 
 const Lightbox = ({ photo, review = false }) => {
-  const { setPhotoToShow, photoToShow, setChosenPhotos, chosenPhotos, currentAlbum } = usePhotoContext()
+  const { setPhotoToShow, photoToShow, setChosenPhotos, chosenPhotos, currentAlbum, notChosenPhotos, setNotChosenPhotos } = usePhotoContext()
 
   const handleLightboxClick = () => {
     setPhotoToShow(null)
@@ -30,9 +30,17 @@ const Lightbox = ({ photo, review = false }) => {
   const handleChoiceClick = (e, chosen) => {
     e.stopPropagation()
     if (chosen && !chosenPhotos.includes(currentAlbum[photoToShow.current])) {
-      console.log('photo added')
+      console.log('photo added to chosen')
+      setNotChosenPhotos(prev => prev.filter(photo => photo !== currentAlbum[photoToShow.current]))
       setChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
     }
+
+    if (!chosen && !notChosenPhotos.includes(currentAlbum[photoToShow.current])) {
+      console.log('photo added to NOT chosen')
+      setChosenPhotos(prev => prev.filter(photo => photo !== currentAlbum[photoToShow.current]))
+      setNotChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
+    }
+
     if (photoToShow.current === currentAlbum.length - 1) return setPhotoToShow(null)
     setPhotoToShow(prev => (
       { ...prev, current: prev.current !== currentAlbum.length - 1 ? prev.current + 1 : 0 }
