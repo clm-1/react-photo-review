@@ -6,7 +6,7 @@ import useDeletePhotos from '../hooks/useDeletePhotos'
 
 const PhotoCard = ({ photo, index, albumId }) => {
   const { setPhotoToShow, chosenPhotos, notChosenPhotos, setPhotoReviewError } = usePhotoContext()
-  const { deleteOne } = useDeletePhotos()
+  const deletePhoto = useDeletePhotos()
 
   const handlePhotoClick = () => {
     console.log(index)
@@ -16,10 +16,7 @@ const PhotoCard = ({ photo, index, albumId }) => {
 
   const handleDeletePhoto = (e) => {
     e.stopPropagation()
-    // const photoInAblums = photo.albums.filter(currAlbum => currAlbum !== albumId)
-    // if (!photoInAblums.length) console.log('photo will be deleted from storage')
-    // if (photoInAblums.length) console.log('photo will be removed from this album only')
-    deleteOne(photo, albumId)
+    deletePhoto.deleteOne(photo, albumId)
   }
 
   return (
