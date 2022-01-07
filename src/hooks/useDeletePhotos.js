@@ -9,21 +9,34 @@ const useDeletePhotos = () => {
   const [isDeleting, setIsDeleting] = useState(false)
 
   // Delete album from photo, delete photo from storage if in no other albums
-  const deleteOne = () => {
+  const deleteOne = async (photo, albumId) => {
     setIsDeleting(true)
+    setIsError(false)
+    setError(null)
 
     try {
+      // Check if photo is in more albums than the current one
+      const photoInAblums = photo.albums.filter(currAlbum => currAlbum !== albumId)
+      if (!photoInAblums.length) {
+        // Delete photo from storage if photo is not in other album/s
+        console.log('deleting from storage')
+        const storageRef = ref(storage, photo.path)
+        await deleteObject(storageRef)
+      }
 
-    } catch(error) {
-
-    } finally {
-
+      // Delete document from photos-collection
+      const docRef = doc(db, 'photos', photo.id)
+      await deleteDoc(docRef)
+    } catch (error) {
+      console.log(error.message)
+      setIsError(true)
+      setError(error.message)
     }
   }
 
 
   return {
-
+    deleteOne,
   }
 }
 

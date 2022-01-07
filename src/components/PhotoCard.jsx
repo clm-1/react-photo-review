@@ -2,9 +2,11 @@ import React from 'react'
 import { createDateTimeString } from '../helpers/time'
 import styles from '../css/PhotoList.module.css'
 import { usePhotoContext } from '../contexts/PhotoContext'
+import useDeletePhotos from '../hooks/useDeletePhotos'
 
 const PhotoCard = ({ photo, index, albumId }) => {
-  const { setPhotoToShow, chosenPhotos, notChosenPhotos, setPhotoReviewError, currentAlbum } = usePhotoContext()
+  const { setPhotoToShow, chosenPhotos, notChosenPhotos, setPhotoReviewError } = usePhotoContext()
+  const { deleteOne } = useDeletePhotos()
 
   const handlePhotoClick = () => {
     console.log(index)
@@ -14,10 +16,10 @@ const PhotoCard = ({ photo, index, albumId }) => {
 
   const handleDeletePhoto = (e) => {
     e.stopPropagation()
-    const photoInAblums = photo.albums.filter(currAlbum => currAlbum !== albumId)
-    if (!photoInAblums.length) console.log('photo will be deleted from storage')
-    if (photoInAblums.length) console.log('photo will be removed from this album only')
-    console.log('delete this photo: ', photo, photoInAblums)
+    // const photoInAblums = photo.albums.filter(currAlbum => currAlbum !== albumId)
+    // if (!photoInAblums.length) console.log('photo will be deleted from storage')
+    // if (photoInAblums.length) console.log('photo will be removed from this album only')
+    deleteOne(photo, albumId)
   }
 
   return (
