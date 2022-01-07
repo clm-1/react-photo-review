@@ -19,11 +19,25 @@ const useUpdateAlbum = () => {
     } finally {
       setIsUpdating(false)
     }
-  
   }
 
+  const setThumbnail = async (thumbnailPath, albumId) => {
+    setIsUpdating(true)
+
+    try {
+      console.log('albumId', albumId)
+      const albumRef = doc(db, 'albums', albumId)
+      await updateDoc(albumRef, { thumbnail: thumbnailPath })
+    } catch(error) {
+      console.log(error.message)
+    } finally {
+      setIsUpdating(false)
+    }
+  } 
+
   return {
-    rename
+    rename,
+    setThumbnail
   }
 }
 

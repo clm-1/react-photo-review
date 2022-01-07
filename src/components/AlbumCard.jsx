@@ -24,7 +24,7 @@ const AlbumCard = ({ album }) => {
   return (
     <div className={styles.albumCardWrapper} onClick={handleAlbumClick}>
       <div className={styles.albumCardImgWrapper}>
-
+        <img src={album.thumbnail}></img>
       </div>
       <div className={styles.albumCardInfo}>
         <h3 onClick={handleDeleteClick} className={styles.title}>{album.name}</h3>

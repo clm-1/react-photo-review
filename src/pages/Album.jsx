@@ -33,6 +33,10 @@ const Album = () => {
   useEffect(() => {
     console.log('photos: ', albumPhotos.data)
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
+    if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
+      console.log('func', updateAlbum.setThumbnail)
+      updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
+    }
   }, [albumPhotos.data])
 
   const handleDeleteAlbum = () => {

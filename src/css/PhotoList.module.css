@@ -11,14 +11,15 @@
 
 .photoCardWrapper {
   width: 100%;
-  overflow-x: hidden;
   cursor: pointer;
 }
 
 .photoCardImgWrapper {
   position: relative;
-  background: chocolate;
+  background: rgb(236, 234, 233);
   width: 100%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.24);
 }
 
 .photoCardImgWrapper:after {
@@ -32,6 +33,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .photoCardInfo {
