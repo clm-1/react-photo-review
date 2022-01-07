@@ -4,11 +4,12 @@ import styles from '../css/PhotoList.module.css'
 import { usePhotoContext } from '../contexts/PhotoContext'
 
 const PhotoCard = ({ photo, index }) => {
-  const { setPhotoToShow, chosenPhotos, notChosenPhotos } = usePhotoContext()
+  const { setPhotoToShow, chosenPhotos, notChosenPhotos, setPhotoReviewError } = usePhotoContext()
 
   const handlePhotoClick = () => {
     console.log(index)
     setPhotoToShow({ current: index })
+    setPhotoReviewError(null)
   }
 
   return (
