@@ -30,7 +30,7 @@ const Album = () => {
       <h1>Album: {album.data && album.data.name}</h1>
       {album.data && <p>Review link: {`review-album/${album.data.owner}/${album.data.id}`}</p>}
       <UploadPhotos albumId={albumId} />
-      { albumPhotos.data && <PhotoList photos={albumPhotos.data} />}
+      { albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} />}
       { photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} /> }
     </div>
   )

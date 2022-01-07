@@ -3,13 +3,21 @@ import { createDateTimeString } from '../helpers/time'
 import styles from '../css/PhotoList.module.css'
 import { usePhotoContext } from '../contexts/PhotoContext'
 
-const PhotoCard = ({ photo, index }) => {
-  const { setPhotoToShow, chosenPhotos, notChosenPhotos, setPhotoReviewError } = usePhotoContext()
+const PhotoCard = ({ photo, index, albumId }) => {
+  const { setPhotoToShow, chosenPhotos, notChosenPhotos, setPhotoReviewError, currentAlbum } = usePhotoContext()
 
   const handlePhotoClick = () => {
     console.log(index)
     setPhotoToShow({ current: index })
     setPhotoReviewError(null)
+  }
+
+  const handleDeletePhoto = (e) => {
+    e.stopPropagation()
+    const photoInAblums = photo.albums.filter(currAlbum => currAlbum !== albumId)
+    if (!photoInAblums.length) console.log('photo will be deleted from storage')
+    if (photoInAblums.length) console.log('photo will be removed from this album only')
+    console.log('delete this photo: ', photo, photoInAblums)
   }
 
   return (
@@ -21,6 +29,7 @@ const PhotoCard = ({ photo, index }) => {
         ${notChosenPhotos.includes(photo) ? styles.photoNotChosen : ''}`}>
       <div className={styles.photoCardImgWrapper}>
         <img src={photo.url} alt={photo.name}></img>
+        <button className={styles.deletePhoto} onClick={handleDeletePhoto}><i className="fas fa-trash-alt"></i></button>
       </div>
       {/* <div className={styles.photoCardInfo}>
         <h3 className={styles.title}>{photo.name}</h3>
