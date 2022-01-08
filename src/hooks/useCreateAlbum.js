@@ -40,7 +40,8 @@ const useCreateAlbum = () => {
         name: albumName,
         owner: !owner ? currentUser.uid : owner,
         original,
-        thumbnail: null
+        thumbnail: null,
+        viewed: original ? true : false,
       })
 
       if (photos.length) {

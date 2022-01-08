@@ -33,11 +33,21 @@ const useUpdateAlbum = () => {
     } finally {
       setIsUpdating(false)
     }
-  } 
+  }
+
+  const setViewed = async (albumId) => {
+    try {
+      const albumRef = doc(db, 'albums', albumId)
+      await updateDoc(albumRef, { viewed: true })
+    } catch(error) {
+      console.log(error.message)
+    }
+  }
 
   return {
     rename,
-    setThumbnail
+    setThumbnail,
+    setViewed
   }
 }
 

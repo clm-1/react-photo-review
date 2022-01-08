@@ -16,9 +16,8 @@ const CreateAlbum = () => {
   return (
     <div className={styles.createAlbumWrapper}>
       <form onSubmit={handleCreateAlbum}>
-        <label htmlFor="album-name">Create new album</label>
         <div className={styles.inputWrapper}>
-          <input type="text" name="album-name" ref={albumNameInputRef} placeholder="Album name" required />
+          <input type="text" name="album-name" ref={albumNameInputRef} placeholder="Add new album" required />
           <button type="submit">+</button>
         </div>
       </form>

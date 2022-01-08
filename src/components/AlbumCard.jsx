@@ -4,8 +4,9 @@ import styles from '../css/AlbumCard.module.css'
 import { db } from '../firebase'
 import { doc, deleteDoc } from 'firebase/firestore'
 import { createDateTimeString } from '../helpers/time'
+import noThumbnail from '../assets/images/no-thumbnail.png'
 
-const AlbumCard = ({ album }) => {
+const AlbumCard = ({ album, review }) => {
   const navigate = useNavigate()
 
   console.log(album)
@@ -24,10 +25,12 @@ const AlbumCard = ({ album }) => {
   return (
     <div className={styles.albumCardWrapper} onClick={handleAlbumClick}>
       <div className={styles.albumCardImgWrapper}>
-        <img src={album.thumbnail}></img>
+        { !album.viewed && <div className={styles.newIndicator}></div>}
+        <img src={album.thumbnail ? album.thumbnail : noThumbnail}></img>
       </div>
       <div className={styles.albumCardInfo}>
         <h3 onClick={handleDeleteClick} className={styles.title}>{album.name}</h3>
+        { review && <p className={styles.reviewedBy}>By: Guybrush Threepwood</p>}
         <p>{createDateTimeString(album?.created)}</p>
       </div>
     </div>

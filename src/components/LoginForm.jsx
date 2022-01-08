@@ -23,7 +23,6 @@ const LoginForm = ({ setRegister, setShowLoginModal }) => {
     } catch (error) {
       console.log(error.message)
       setLoading(false)
-    } finally {
     }
   }
 

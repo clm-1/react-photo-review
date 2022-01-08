@@ -23,7 +23,6 @@ const RegisterForm = ({ setRegister, setShowLoginModal }) => {
       navigate('/albums')
     } catch (error) {
       console.log(error.message)
-    } finally {
       setLoading(false)
     }
   }

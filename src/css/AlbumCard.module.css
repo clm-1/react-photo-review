@@ -1,14 +1,15 @@
 .albumCardWrapper {
   width: 100%;
-  overflow-x: hidden;
   cursor: pointer;
+  overflow-x: hidden;
 }
 
 .albumCardImgWrapper {
-  border-radius: 5px;
+  border-radius: 7px;
   position: relative;
   background: rgb(236, 234, 233);
   width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.342);
 }
 
 .albumCardImgWrapper:after {
@@ -25,7 +26,19 @@
   object-fit: cover;
 }
 
+.albumCardImgWrapper .newIndicator {
+  position: absolute;
+  z-index: 3;
+  width: 10px;
+  height: 10px;
+  top: 5px;
+  left: 5px;
+  border-radius: 50%;
+  background: rgb(233, 51, 51);
+}
+
 .albumCardInfo {
+  margin-top: .1rem;
   padding: .1rem;
 }
 
@@ -37,7 +50,17 @@
 }
 
 .albumCardInfo p {
-  margin-top: .2rem;
-  font-size: .8rem;
+  color: rgb(18, 117, 121);
+  margin-top: .15rem;
+  font-size: .85rem;
   font-style: italic;
+}
+
+.albumCardInfo .reviewedBy {
+  color: black;
+  opacity: .7;
+  font-style: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

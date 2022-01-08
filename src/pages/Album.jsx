@@ -28,6 +28,9 @@ const Album = () => {
 
   useEffect(() => {
     console.log('album', album.data)
+    if (album.data && !album.data.viewed) {
+      updateAlbum.setViewed(albumId)
+    }
   }, [album.data])
 
   useEffect(() => {
