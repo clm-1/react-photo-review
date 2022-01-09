@@ -7,6 +7,7 @@ const useUpdateAlbum = () => {
   const [isError, setIsError] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
 
+  // Change name for album from Album page
   const rename = async (newName, albumId) => {
     setIsUpdating(true)
 
@@ -21,6 +22,7 @@ const useUpdateAlbum = () => {
     }
   }
 
+  // Set thumbnail for album
   const setThumbnail = async (thumbnailPath, albumId) => {
     setIsUpdating(true)
 
@@ -35,6 +37,8 @@ const useUpdateAlbum = () => {
     }
   }
 
+  // Reviewed albums will have viewed: false as default
+  // This sets viewed to true when user views it
   const setViewed = async (albumId) => {
     try {
       const albumRef = doc(db, 'albums', albumId)

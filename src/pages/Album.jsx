@@ -27,30 +27,25 @@ const Album = () => {
   const reviewLinkRef = useRef()
 
   useEffect(() => {
-    console.log(photoToShow)
-  }, [photoToShow])
-
-  useEffect(() => {
-    console.log('album', album.data)
     if (album.data && !album.data.viewed) {
       updateAlbum.setViewed(albumId)
     }
   }, [album.data])
 
+  // Set current album in context when data is loaded or changes
+  // Set thumbnail (if no thumbnail currently exists)
   useEffect(() => {
-    console.log('photos: ', albumPhotos.data)
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
     if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
-      console.log('func', updateAlbum.setThumbnail)
       updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
     }
   }, [albumPhotos.data])
 
   const handleDeleteAlbum = () => {
-    console.log('delete this: ', album.data)
     deleteAlbum()
   }
 
+  // Change name of album
   const handleNameChange = (e) => {
     e.preventDefault()
     console.log('change name', changeNameInputRef.current.value)
@@ -60,6 +55,7 @@ const Album = () => {
     updateAlbum.rename(changeNameInputRef.current.value, album.data.id)
   }
 
+  // Copy review link to clipboard on button click
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(reviewLinkRef.current.value)
   }
@@ -78,9 +74,6 @@ const Album = () => {
             </div>
             <hr />
             <div className={styles.albumHeader}>
-              {/* <div className={styles.albumThumbnailWrapper}>
-                <img src={album.data.thumbnail ? album.data.thumbnail : noThumbnail}></img>
-              </div> */}
               {album.data && !rename &&
                 <>
                   <div className={styles.albumInfo}>

@@ -12,10 +12,7 @@ const Albums = () => {
   const { currentUser } = useAuthContext()
   const { showReviews, setShowReviews } = usePhotoContext()
 
-  useEffect(() => {
-    console.log(albums.data)
-  }, [albums.data])
-
+  // Renders indicator for number of new reviews (not yet viewed by the user)
   const renderNewIndicator = () => {
     const num = albums.data.filter(album => !album.viewed).length
     if (num < 1) return
@@ -57,6 +54,7 @@ const Albums = () => {
             <CreateAlbum />
             {albums.data && <AlbumList albums={albums.data.filter(album => album.original)} />}
           </div>
+          // Set reviews to true if reviews tab is selected
           : <div>
             {albums.data && <AlbumList albums={albums.data.filter(album => !album.original)} reviews={true} />}
           </div>}

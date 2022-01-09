@@ -2,6 +2,7 @@ import { useFirestoreDocument } from '@react-query-firebase/firestore'
 import { doc, collection } from 'firebase/firestore'
 import { db } from '../firebase'
 
+// Fetch one album from db
 const useAlbum = (albumId) => {
   const albumRef = doc(db, 'albums', albumId)
   const albumQuery = useFirestoreDocument(['album', albumId], albumRef, {

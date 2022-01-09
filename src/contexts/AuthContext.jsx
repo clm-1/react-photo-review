@@ -34,7 +34,6 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     // listen for changes to auth state
     onAuthStateChanged(auth, (user) => {
-      console.log('checking user: ', user)
       setCurrentUser(user)
       setLoading(false)
     })

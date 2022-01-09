@@ -11,14 +11,14 @@ const useUploadPhoto = (albumId) => {
   const [isUploading, setIsUploading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(null)
-  // current image will be used to display which image is currently being uploaded
+  // Current image will be used to display which image is currently being uploaded
   const [currentPhoto, setCurrentPhoto] = useState(0)
 
   const uploadPhotos = async (image, transferredBytes, combinedSize) => {
-    // construct filename to save image as
+    // Construct filename to save image as
     const fileName = `${Date.now()}-${image.name}`
 
-    // construct full path
+    // Construct full path
     const fullPath = `photos/${currentUser.uid}/${fileName}`
 
     try {
@@ -30,13 +30,13 @@ const useUploadPhoto = (albumId) => {
         setUploadProgress(Math.round(((transferredBytes + uploadTaskSnapshot.bytesTransferred) / combinedSize) * 100))
       })
 
-      // wait for upload to finish
+      // Wait for upload to finish
       await uploadTask.then()
 
-      // get photo url
+      // Get photo url
       const url = await getDownloadURL(storageRef)
 
-      // create doc for the photo
+      // Create doc for the photo
       const collectionRef = collection(db, 'photos')
 
       await addDoc(collectionRef, {

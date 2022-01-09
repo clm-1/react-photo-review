@@ -9,13 +9,11 @@ import noThumbnail from '../assets/images/no-thumbnail.png'
 const AlbumCard = ({ album, review }) => {
   const navigate = useNavigate()
 
-  console.log(album)
-
   const handleAlbumClick = () => {
-    console.log('album:', album.id)
     navigate(`/albums/${album.id}`)
   }
 
+  // Delete album on click (will check in hook if photos also need to be deleted from storage)
   const handleDeleteClick = async (e) => {
     e.stopPropagation()
     const docRef = doc(db, 'albums', album.id)

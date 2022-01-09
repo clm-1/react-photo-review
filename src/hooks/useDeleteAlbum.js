@@ -10,10 +10,6 @@ const useDeleteAlbum = (album, photos) => {
   const [isError, setIsError] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
 
-  // delete album doc
-  // delete photos if they are in no other album
-  // delete album from albums-array on photos
-
   const deleteAlbum = async () => {
     setIsDeleting(true)
 

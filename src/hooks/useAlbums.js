@@ -3,6 +3,7 @@ import { db } from '../firebase'
 import { collection, where, query, orderBy } from 'firebase/firestore'
 import { useAuthContext } from '../contexts/AuthContext'
 
+// Fetch multiple albums from db for current user
 const useAlbums = () => {
   const { currentUser } = useAuthContext()
 
