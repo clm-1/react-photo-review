@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { doc, deleteDoc } from 'firebase/firestore'
+import { doc, deleteDoc, updateDoc, arrayRemove } from 'firebase/firestore'
 import { ref, deleteObject } from 'firebase/storage'
 import { db, storage } from '../firebase'
 
@@ -16,17 +16,20 @@ const useDeletePhotos = () => {
 
     try {
       // Check if photo is in more albums than the current one
-      const photoInAblums = photo.albums.filter(currAlbum => currAlbum !== albumId)
-      if (!photoInAblums.length) {
+      const photoInAlbums = photo.albums.filter(currAlbum => currAlbum !== albumId)
+      console.log(photoInAlbums)
+      if (!photoInAlbums.length) {
         // Delete photo from storage if photo is not in other album/s
         console.log('deleting from storage')
         const storageRef = ref(storage, photo.path)
         await deleteObject(storageRef)
+        const docRef = doc(db, 'photos', photo.id)
+        await deleteDoc(docRef)
+      } else {
+        // Delete document from photos-collection
+        const docRef = doc(db, 'photos', photo.id)
+        updateDoc(docRef, { 'albums': arrayRemove(albumId) })
       }
-
-      // Delete document from photos-collection
-      const docRef = doc(db, 'photos', photo.id)
-      await deleteDoc(docRef)
     } catch (error) {
       console.log(error.message)
       setIsError(true)
