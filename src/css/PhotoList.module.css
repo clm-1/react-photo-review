@@ -43,6 +43,11 @@
   overflow-x: hidden;
 }
 
+.photoCardWrapper.isDeletingPhoto {
+  opacity: .5;
+  pointer-events: none;
+}
+
 .photoCardImgWrapper {
   position: relative;
   background: rgb(236, 234, 233);

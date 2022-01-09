@@ -16,7 +16,7 @@ const CreateAlbum = ({ fromAlbum, photoList }) => {
     if (!albumNameInputRef.current.value) return
     if (fromAlbum) {
       if (!chosenPhotos.length) return
-      createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos)
+      createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos, null, fromAlbum.thumbnail)
       setTimeout(() => {
         navigate('/albums')
       }, 500)

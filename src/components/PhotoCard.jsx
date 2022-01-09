@@ -28,7 +28,7 @@ const PhotoCard = ({ photo, index, albumId, review }) => {
   return (
     <div
       onClick={handlePhotoClick}
-      className={`${styles.photoCardWrapper}`}>
+      className={`${styles.photoCardWrapper} ${deletePhoto.isDeleting ? styles.isDeletingPhoto : ''}`}>
       {!review &&
         <div className={styles.photoCheckBox} onClick={handleCheckBoxClick}>
           {chosenPhotos.includes(photo) &&

@@ -19,7 +19,7 @@ const Album = () => {
   const { photoToShow, setCurrentAlbum } = usePhotoContext()
   const album = useAlbum(albumId)
   const albumPhotos = useAlbumPhotos(albumId)
-  const { deleteAlbum } = useDeleteAlbum(album.data, albumPhotos.data)
+  const { deleteAlbum, isDeleting } = useDeleteAlbum(album.data, albumPhotos.data)
   const [rename, setRename] = useState(false)
   const updateAlbum = useUpdateAlbum()
   const changeNameInputRef = useRef()
@@ -62,54 +62,57 @@ const Album = () => {
 
   return (
     <>
-        <div className={styles.albumPageWrapper}>
-          <div className={styles.albumWrapper}>
-            <div className={styles.topBar}>
-              <p onClick={() => navigate('/albums')}><span>{`<`}</span> Back to albums</p>
-              <div className={styles.topBarBtns}>
-                <button onClick={() => setRename(!rename)} className={styles.albumBtn}><i className="fas fa-edit"></i></button>
-                <button className={styles.albumBtn}><i className="fas fa-code-branch"></i></button>
-                <button onClick={handleDeleteAlbum} className={styles.albumBtn}><i className="fas fa-trash-alt"></i></button>
-              </div>
+      <div className={`${styles.albumPageWrapper}`}>
+        {album.data && album.data.reviewedBy &&
+          <div className={styles.reviewedAlbumMsg}>
+            <p>Album review sent by: {album.data.reviewedBy}</p>
+          </div>}
+        <div className={`${styles.albumWrapper} ${isDeleting ? styles.isDeletingAlbum : ''}`}>
+          <div className={styles.topBar}>
+            <p onClick={() => navigate('/albums')}><span>{`<`}</span> Back to albums</p>
+            <div className={styles.topBarBtns}>
+              <button onClick={() => setRename(!rename)} className={styles.albumBtn}><i className="fas fa-edit"></i></button>
+              <button onClick={handleDeleteAlbum} className={styles.albumBtn}><i className="fas fa-trash-alt"></i></button>
             </div>
-            <hr />
-            <div className={styles.albumHeader}>
-              {album.data && !rename &&
-                <>
-                  <div className={styles.albumInfo}>
-                    <div className={styles.albumTitle}>
-                      <h1>{album.data.name}</h1>
-                      <h2>{createDateTimeString(album.data.created)}</h2>
-                    </div>
-                    {albumPhotos.data && <div className={styles.albumStats}>
-                      <div className={styles.stat}>
-                        <p>{albumPhotos.data.length}</p>
-                        <p>{albumPhotos.data.length === 1 ? 'Photo' : 'Photos'}</p>
-                      </div>
-                    </div>}
-                  </div>
-                </>}
-              {rename &&
-                <form onSubmit={handleNameChange}>
-                  <label htmlFor="rename">Enter new album name</label>
-                  <div className={styles.inputWrapper}>
-                    <input type="text" name="rename" ref={changeNameInputRef} defaultValue={album.data.name} required />
-                    <button type="submit"><i className="fas fa-check"></i></button>
-                  </div>
-                </form>}
-            </div>
-            {album.data && 
-              <div className={styles.reviewLinkWrapper}>
-                <input ref={reviewLinkRef} readOnly="readonly" className={styles.reviewLink} value={`http://localhost:3000/review-album/${album.data.owner}/${album.data.id}`}></input>
-                <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
-              </div>}
-            <UploadPhotos albumId={albumId} />
-            {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} />}
-            <hr className={styles.bottomHr} />
-            {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false}/>}
-            {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} />}
           </div>
+          <hr />
+          <div className={styles.albumHeader}>
+            {album.data && !rename &&
+              <>
+                <div className={styles.albumInfo}>
+                  <div className={styles.albumTitle}>
+                    <h1>{album.data.name}</h1>
+                    <h2>{createDateTimeString(album.data.created)}</h2>
+                  </div>
+                  {albumPhotos.data && <div className={styles.albumStats}>
+                    <div className={styles.stat}>
+                      <p>{albumPhotos.data.length}</p>
+                      <p>{albumPhotos.data.length === 1 ? 'Photo' : 'Photos'}</p>
+                    </div>
+                  </div>}
+                </div>
+              </>}
+            {rename &&
+              <form onSubmit={handleNameChange}>
+                <label htmlFor="rename">Enter new album name</label>
+                <div className={styles.inputWrapper}>
+                  <input type="text" name="rename" ref={changeNameInputRef} defaultValue={album.data.name} required />
+                  <button type="submit"><i className="fas fa-check"></i></button>
+                </div>
+              </form>}
+          </div>
+          {album.data &&
+            <div className={styles.reviewLinkWrapper}>
+              <input ref={reviewLinkRef} readOnly="readonly" className={styles.reviewLink} value={`http://localhost:3000/review-album/${album.data.owner}/${album.data.id}`}></input>
+              <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
+            </div>}
+          <UploadPhotos albumId={albumId} />
+          {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} />}
+          <hr className={styles.bottomHr} />
+          {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false} />}
+          {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} />}
         </div>
+      </div>
     </>
   )
 }

@@ -28,7 +28,7 @@ const AlbumCard = ({ album, review }) => {
       </div>
       <div className={styles.albumCardInfo}>
         <h3 onClick={handleDeleteClick} className={styles.title}>{album.name}</h3>
-        { review && <p className={styles.reviewedBy}>By: Guybrush Threepwood</p>}
+        { review && <p className={styles.reviewedBy}>By: {album.reviewedBy}</p>}
         <p>{createDateTimeString(album?.created)}</p>
       </div>
     </div>

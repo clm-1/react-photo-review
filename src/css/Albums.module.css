@@ -54,8 +54,8 @@
 .reviewsTabWrapper .newIndicator {
   background: rgb(233, 51, 51);
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   display: flex;
   justify-content: center;
   align-items: center;

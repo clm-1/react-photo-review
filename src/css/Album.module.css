@@ -9,6 +9,25 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.albumWrapper.isDeletingAlbum {
+  pointer-events: none;
+  opacity: .5;
+}
+
+.reviewedAlbumMsg {
+  background: rgba(255, 237, 134, 0.815);
+  border-radius: 7px;
+  border: 2px solid rgb(185, 167, 84);
+  padding: .5rem;
+  min-height: 30px;
+  margin-bottom: .5rem;
+}
+
+.reviewedAlbumMsg p {
+  text-align: center;
+  color: rgb(88, 77, 29);
+}
+
 .topBar {
   display: flex;
   justify-content: space-between;
@@ -57,7 +76,6 @@
   margin-bottom: 1.5rem;
   display: flex;
   gap: 1rem;
-  padding-left: .2rem;
   align-items: center;
 }
 
@@ -132,7 +150,7 @@
 
 .reviewLink {
   border: 1px solid rgba(0, 0, 0, 0.527);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: .7rem;
   padding-right: 40px;
   border-radius: 5px;
@@ -208,7 +226,7 @@
 }
 
 .bottomHr {
-  margin: 1rem 0 1rem 0;
+  margin: 2.2rem 0 .3rem 0;
 }
 
 /* PHOTO REVIEW STYLES */
@@ -266,13 +284,25 @@
   margin-top: auto;
   border: 1px solid black;
   text-align: center;
-  padding: .7rem;
+  padding: 0 1rem;
   border-radius: 10px;
-  min-height: 60px;
+  min-height: 50px;
+  font-size: .83rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: auto;
+}
+
+.reviewStatsMsg.notFinished {
+  color: rgb(150, 15, 15);
+  border: 1px solid rgb(150, 15, 15);
+}
+
+.reviewStatsMsg.finished {
+  color: rgb(23, 119, 71);
+  border: 1px solid rgb(23, 119, 71);
 }
 
 .photoReviewForm {

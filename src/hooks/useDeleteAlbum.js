@@ -68,7 +68,8 @@ const useDeleteAlbum = (album, photos) => {
   }
 
   return {
-    deleteAlbum
+    deleteAlbum,
+    isDeleting
   }
 }
 

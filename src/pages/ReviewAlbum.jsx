@@ -13,7 +13,8 @@ import { createDateTimeString } from '../helpers/time'
 
 const Album = () => {
   const { albumId, ownerId } = useParams()
-  const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos } = usePhotoContext()
+  const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
+  const reviewerNameRef = useRef()
   const album = useAlbum(albumId)
   const albumPhotos = useAlbumPhotos(albumId)
   const updateAlbum = useUpdateAlbum()
@@ -57,7 +58,9 @@ const Album = () => {
       console.log(`log: ${name}`)
     } else name = album.data.name
 
-    createAlbum.create(`${name}`, album.data.owner, false, chosenPhotos)
+    createAlbum.create(`${name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail)
+    setChosenPhotos([])
+    setNotChosenPhotos([])
   }
 
   return (
@@ -66,9 +69,6 @@ const Album = () => {
         <div className={styles.albumPageWrapper}>
           <div className={styles.albumWrapper}>
             <div className={styles.reviewAlbumHeader}>
-              {/* <div className={styles.albumThumbnailWrapper}>
-                <img src={album.data.thumbnail ? album.data.thumbnail : noThumbnail}></img>
-              </div> */}
               <div className={styles.albumInfo}>
                 <div>
                   <h1>{album.data.name}</h1>
@@ -103,14 +103,14 @@ const Album = () => {
                 <p>Approved:</p>
                 <p>{chosenPhotos.length}</p>
               </div>
-              <div className={styles.reviewStatsMsg}>
-                <p>{albumPhotos.data.length !== (notChosenPhotos.length + chosenPhotos.length) ? 'You need to approve or reject every photo before sending your review' : 'Thank you! All set to send in the review'}</p>
+              <div className={`${styles.reviewStatsMsg} ${albumPhotos.data.length !== (notChosenPhotos.length + chosenPhotos.length) ? styles.notFinished : styles.finished}`}>
+                {albumPhotos.data.length !== (notChosenPhotos.length + chosenPhotos.length) ? <p>You need to approve or reject every photo before sending your review</p> : <p>All set to send in review!</p>}
               </div>
             </div>
             <div className={styles.photoReviewForm}>
               <form onSubmit={handleSendReview}>
-                <label htmlFor="client-name">Your name</label>
-                <input type="text" name="client-name" />
+                <label htmlFor="client-name" required>Your name</label>
+                <input type="text" name="client-name" ref={reviewerNameRef} />
                 <label htmlFor="comment">Comment (optional)</label>
                 <textarea type="text" name="comment" />
                 <button type="submit" className={styles.sendReviewBtn}>Send review</button>
