@@ -1,10 +1,38 @@
 /* PHOTO LIST */
 
+.listWrapper .selectionBtn {
+  padding: .4rem;
+  margin-top: 0rem;
+  border-radius: 5px;
+  margin-right: .5rem;
+  border: 1px solid black;
+}
+
 .photoListWrapper {
-  margin-top: .5rem;
+  margin-top: 1rem;
+  background: whitesmoke;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: .5rem;
+  grid-template-columns: 1fr;
+  gap: .7rem;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 360px) {
+  .photoListWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .photoListWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .photoListWrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* PHOTO CARD */
@@ -12,6 +40,7 @@
 .photoCardWrapper {
   width: 100%;
   cursor: pointer;
+  overflow-x: hidden;
 }
 
 .photoCardImgWrapper {
@@ -38,10 +67,12 @@
 
 .photoCardInfo {
   padding: .1rem;
+  margin-top: .3rem;
 }
 
 .photoCardInfo .title {
   font-weight: 400;
+  font-size: 1rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -51,14 +82,21 @@
   margin-top: .2rem;
   font-size: .8rem;
   font-style: italic;
+  color: rgb(18, 117, 121);
 }
 
-.photoChosen {
-  border: 1px solid green;
+.choiceMark {
+  position: absolute;
+  bottom: 5px;
+  z-index: 5;
+  font-size: 1.4rem;
+  right: 5px;
+  color: rgb(95, 196, 95);
+  text-shadow: 0 0 5px black;
 }
 
-.photoNotChosen {
-  border: 1px solid red;
+.choiceMark.rejected {
+  color: rgb(233, 17, 17);
 }
 
 .deletePhoto {
@@ -69,4 +107,24 @@
   font-size: 1rem;
   top: 7px;
   right: 7px;
+}
+
+.deletePhoto i {
+  text-shadow: 0 0 3px black;
+}
+
+.photoCheckBox {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  margin-bottom: .3rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photoCheckBox i {
+  font-size: .85rem;
+  line-height: 0;
 }

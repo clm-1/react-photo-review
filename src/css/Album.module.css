@@ -1,3 +1,345 @@
-.albumWrapper {
+.albumPageWrapper {
   padding: 40px 1rem 1rem 1rem;
+}
+
+.albumWrapper {
+  padding: 1rem 1rem 1.5rem 1rem;
+  background: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .7rem;
+}
+
+.topBar p {
+  cursor: pointer;
+  border: 1px solid black;
+  font-size: 1.1rem;
+  padding: .2rem .5rem;
+  border-radius: 5px;
+}
+
+.topBar span {
+  position: relative;
+  top: 1px;
+}
+
+.topBarBtns {
+  display: flex;
+  gap: .8rem;
+}
+
+.albumBtn {
+  background: none;
+  border: none;
+}
+
+.albumBtn:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.albumBtn:active {
+  transform: scale(1);
+}
+
+.albumBtn i {
+  font-size: 1.4rem;
+}
+
+.albumHeader {
+  margin-top: .7rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  padding-left: .2rem;
+  align-items: center;
+}
+
+.albumHeader form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.albumHeader form .inputWrapper {
+  display: flex;
+}
+
+.albumHeader label {
+  margin-left: .1rem;
+  font-size: 1rem;
+  margin-bottom: .2rem;
+}
+
+.inputWrapper input {
+  background: whitesmoke;
+  flex: 1;
+  padding: .7rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 91.5%;
+}
+
+.inputWrapper button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-size: 2.2rem;
+  background: rgb(26, 147, 151);
+  border: none;
+  margin-left: .5rem;
+  width: 8.5%;
+  min-width: 50px;
+  border-radius: 5px;
+}
+
+.inputWrapper button i {
+  font-size: 1.5rem;
+}
+
+.albumThumbnailWrapper {
+  position: relative;
+  background: wheat;
+  width: 15%;
+  border-radius: 5px;
+}
+
+.albumThumbnailWrapper:after {
+  content: '';
+  display: block;
+  padding-top: 50%;
+}
+
+.albumThumbnailWrapper img {
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewLinkWrapper {
+  position: relative;
+}
+
+.reviewLink {
+  border: 1px solid rgba(0, 0, 0, 0.527);
+  font-size: 1.2rem;
+  padding: .7rem;
+  padding-right: 40px;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.829);
+  background: whitesmoke;
+}
+
+.reviewLinkWrapper button {
+  position: absolute;
+  background: none;
+  right: 5px;
+  top: 50%;
+  width: 35px;
+  border: none;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.reviewLinkWrapper button:hover {
+  transform: translateY(-50%) scale(1.04);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.reviewLinkWrapper button:active {
+  transform: translateY(-50%) scale(1);
+}
+
+.reviewLinkWrapper button i {
+  font-size: 1.4rem;
+}
+
+.albumInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.albumInfo .albumTitle {
+  width: 100%;
+}
+
+.albumInfo h1 {
+  font-weight: 600;
+  font-size: clamp(.8rem, calc(.8rem + 2.5vw), 1.7rem);
+}
+
+.albumInfo h2 {
+  font-weight: 400;
+  margin-top: .1rem;
+  font-style: italic;
+  font-size: clamp(.5rem, calc(.6rem + 2.2vw), 1.1rem);
+  color: rgb(18, 117, 121);
+}
+
+.albumStats {
+  display: flex;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+
+.albumStats .stat {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: .4rem .6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+}
+
+.bottomHr {
+  margin: 1rem 0 1rem 0;
+}
+
+/* PHOTO REVIEW STYLES */
+
+.sendReviewWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .2rem;
+}
+
+.reviewAlbumHeader {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.photoReviewStats {
+  background: whitesmoke;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.photoReviewStats hr {
+  margin-bottom: 1rem;
+}
+
+.photoReviewStats > p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: .3rem;
+}
+
+.photoReviewStats .summaryItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.photoReviewStats .summaryItem.lastItem {
+  margin-bottom: .7rem;
+}
+
+.photoReviewStats .summaryItem p {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
+
+.photoReviewStats .reviewStatsMsg {
+  margin-top: auto;
+  border: 1px solid black;
+  text-align: center;
+  padding: .7rem;
+  border-radius: 10px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.photoReviewForm {
+  background: whitesmoke;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.photoReviewForm form {
+  display: flex;
+  flex-direction: column;
+}
+
+.photoReviewForm form input {
+  padding: .5rem;
+  background: whitesmoke;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: .3rem;
+  margin-bottom: .55rem;
+}
+
+.photoReviewForm form textarea {
+  margin-top: .3rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  padding: 0 .3rem;
+  resize: none;
+  height: 55px;
+  background: whitesmoke;
+  border-radius: 5px;
+}
+
+.sendReviewBtn {
+  padding: .95rem;
+  font-size: 1.2rem;
+  color: white;
+  background: rgb(26, 147, 151);
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 650px) {
+  .albumInfo .albumTitle {
+    margin-right: 1rem;
+  }
+
+  .reviewLink {
+    padding: 1rem;
+    padding-right: 45px;
+  }
+
+  .albumStats {
+    margin-left: auto;
+    margin-top: 0;
+  }
+  
+  .sendReviewWrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: .7rem;
+  }
+
+  .albumInfo {
+    align-items: center;
+    flex-direction: row;
+  }
 }

@@ -11,15 +11,34 @@
   flex-direction: column;
 }
 
-.inputWrapper {
+.createAlbumWrapper .inputWrapper {
   display: flex;
   margin-top: .5rem;
   border-radius: 10px;
 }
 
 .createAlbumWrapper label {
-  margin-left: .2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.selectionControlWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.selectionControlWrapper div {
+  margin: .3rem 0 .3rem 0;
+  display: flex;
+  gap: .5rem;
+}
+
+.selectionControlWrapper .selectionBtn {
+  border: none;
+  font-size: .9rem;
+  background: none;
+  color: rgb(18, 117, 121);
+  cursor: pointer;
 }
 
 .inputWrapper input {
@@ -41,4 +60,14 @@
   min-width: 50px;
   height: 100%;
   border-radius: 5px;
+}
+
+@media screen and (min-width: 650px) {
+  .selectionControlWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: .3rem 0 0rem 0;
+  }
 }

@@ -4,12 +4,10 @@ import RequireAuth from './components/RequireAuth'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Albums from './pages/Albums'
 import Home from './pages/Home'
-import { Container } from 'react-bootstrap'
 import Album from './pages/Album'
-import ReviewAlbum from './pages/ReviewAlbum'
 import Navbar from './components/Navbar'
 import LoginRegisterModal from './components/LoginRegisterModal'
-import Review from './pages/Review'
+import ReviewAlbum from './pages/ReviewAlbum'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -21,7 +19,7 @@ function App() {
         { showLoginModal && <LoginRegisterModal setShowLoginModal={setShowLoginModal}/>}
         <Routes>
           <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} />} />
-          <Route path="/review-album/:ownerId/:albumId" element={<Review />} />
+          <Route path="/review-album/:ownerId/:albumId" element={<ReviewAlbum />} />
 
           {/* Protected */}
           <Route path="/albums" element={

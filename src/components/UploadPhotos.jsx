@@ -77,7 +77,7 @@ const UploadPhotos = ({ albumId }) => {
           {
           isDragActive
             ? (isDragAccept ? <p>Drop the photos!</p> : <p>One or more photos will not be uploaded</p>)
-            : <p>Drop photos here</p>
+            : <p>Add photos to this album</p>
           }
 
         {uploadPhotos.uploadProgress !== null && <ProgressBar variant="success" animated label={`${uploadPhotos.currentPhoto + 1}/${acceptedFiles.length}`} now={uploadPhotos.uploadProgress} />}

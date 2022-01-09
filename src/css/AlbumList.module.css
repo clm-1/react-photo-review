@@ -1,8 +1,26 @@
 .albumListWrapper {
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: .7rem;
+}
+
+@media screen and (min-width: 360px) {
+  .albumListWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .albumListWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .albumListWrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* .albumListWrapper.reviews {

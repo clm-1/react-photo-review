@@ -9,7 +9,6 @@
   position: relative;
   background: rgb(236, 234, 233);
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.342);
 }
 
 .albumCardImgWrapper:after {
