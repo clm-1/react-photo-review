@@ -14,6 +14,7 @@ import SentReviewModal from '../components/SentReviewModal'
 const Album = () => {
   const { albumId, ownerId } = useParams()
   const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
+  const [reviewSent, setReviewSent] = useState(false)
   const sentReview = useRef(false)
   const [showSentModal, setShowSentModal] = useState(false)
   const reviewerNameRef = useRef()
@@ -44,6 +45,7 @@ const Album = () => {
 
       if (storageObj.reviewSent) {
         sentReview.current = true
+        setReviewSent(true)
       }
     }
   }
@@ -119,7 +121,7 @@ const Album = () => {
               </div>
             </div>
             <hr />
-            {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} review={true} />}
+            {albumPhotos.data && <PhotoList sentReview={sentReview.current} photos={albumPhotos.data} albumId={albumId} review={true} />}
             {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} reviewSent={sentReview.current} />}
           </div>
           <div className={`${styles.sendReviewWrapper} ${sentReview.current ? styles.reviewSent : ''}`}>

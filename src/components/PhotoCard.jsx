@@ -4,7 +4,7 @@ import styles from '../css/PhotoList.module.css'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import useDeletePhotos from '../hooks/useDeletePhotos'
 
-const PhotoCard = ({ photo, index, albumId, review }) => {
+const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
   const { setPhotoToShow, chosenPhotos, setChosenPhotos, notChosenPhotos, setPhotoReviewError, createNewAlbum, currentAlbum, setNotChosenPhotos } = usePhotoContext()
   const deletePhoto = useDeletePhotos()
 
@@ -68,7 +68,7 @@ const PhotoCard = ({ photo, index, albumId, review }) => {
             <i className="fas fa-check"></i>}
         </div>}
       <div className={`${styles.photoCardImgWrapper}`}>
-        {review && renderChoiceBtns()}
+        {review && !sentReview && renderChoiceBtns()}
         <img className={`${notChosenPhotos.filter(currPhoto => currPhoto.id === photo.id).length ? styles.dimImg : ''}`} src={photo.url} alt={photo.name}></img>
         {!review && !createNewAlbum && <button className={styles.deletePhoto} onClick={handleDeletePhoto}><i className="fas fa-trash-alt"></i></button>}
       </div>
