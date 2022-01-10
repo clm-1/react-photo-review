@@ -7,7 +7,6 @@ import styles from '../css/Album.module.css'
 import Lightbox from '../components/Lightbox'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
-import noThumbnail from '../assets/images/no-thumbnail.png'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import { createDateTimeString } from '../helpers/time'
 import SentReviewModal from '../components/SentReviewModal'
@@ -16,6 +15,7 @@ const Album = () => {
   const { albumId, ownerId } = useParams()
   const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
   const [reviewSent, setReviewSent] = useState(false)
+  const sentReview = useRef(false)
   const [showSentModal, setShowSentModal] = useState(false)
   const reviewerNameRef = useRef()
   const album = useAlbum(albumId)
@@ -24,10 +24,10 @@ const Album = () => {
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
 
-  const setLocalStorage = (reviewSent = false) => {
+  const setLocalStorage = () => {
     if (!album.data) return
     const storageObj = {
-      reviewSent,
+      reviewSent: sentReview.current,
       chosenPhotos,
       notChosenPhotos
     }
@@ -41,17 +41,15 @@ const Album = () => {
     if (storageObj) {
       setChosenPhotos([...storageObj.chosenPhotos])
       setNotChosenPhotos([...storageObj.notChosenPhotos])
+
+      if (storageObj.reviewSent) {
+        sentReview.current = true
+      }
     }
   }
 
   useEffect(() => {
-    // setNotChosenPhotos([])
-    // setChosenPhotos([])
     getLocalStorage()
-
-    return () => {
-     
-    }
   }, [])
 
   useEffect(() => {
@@ -90,9 +88,10 @@ const Album = () => {
     } else name = album.data.name
 
     createAlbum.create(`${name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail)
+    sentReview.current = true;
     setLocalStorage(true)
-    setChosenPhotos([])
-    setNotChosenPhotos([])
+    // setChosenPhotos([])
+    // setNotChosenPhotos([])
   }
 
   return (
@@ -100,7 +99,7 @@ const Album = () => {
       {showSentModal && <SentReviewModal setShowSentModal={setShowSentModal} />}
       {album.data && albumPhotos.data &&
         <div className={styles.albumPageWrapper}>
-          {reviewSent && <div className={styles.reviewedAlbumMsg}>
+          {sentReview.current && <div className={styles.reviewedAlbumMsg}>
             <p>You have sent a review for this album</p>
           </div>}
           <div className={styles.albumWrapper}>
@@ -120,9 +119,9 @@ const Album = () => {
             </div>
             <hr />
             {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} review={true} />}
-            {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} reviewSent={reviewSent} />}
+            {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} reviewSent={sentReview.current} />}
           </div>
-          <div className={`${styles.sendReviewWrapper} ${reviewSent ? styles.reviewSent : ''}`}>
+          <div className={`${styles.sendReviewWrapper} ${sentReview.current ? styles.reviewSent : ''}`}>
             <div className={styles.photoReviewStats}>
               {/* <p>{photoReviewError && photoReviewError}</p> */}
               <p>Summary</p>
