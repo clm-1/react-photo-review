@@ -27,7 +27,7 @@ const useCreateAlbum = () => {
 
   // Create new album for the current user
   // Add album to array for selcted photos if photos is not an empty array
-  const create = async (albumName, owner = null, original = true, photos = [], reviewedBy = null, thumbnail = null) => {
+  const create = async (albumName, owner = null, original = true, photos = [], reviewedBy = null, thumbnail = null, comment = null) => {
     const collectionRef = collection(db, 'albums')
     setError(null)
     setIsError(false)
@@ -43,6 +43,7 @@ const useCreateAlbum = () => {
         thumbnail,
         viewed: original ? true : false,
         reviewedBy,
+        comment,
       })
 
       if (photos.length) {

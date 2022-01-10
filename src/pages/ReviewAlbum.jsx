@@ -14,10 +14,10 @@ import SentReviewModal from '../components/SentReviewModal'
 const Album = () => {
   const { albumId, ownerId } = useParams()
   const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
-  const [reviewSent, setReviewSent] = useState(false)
   const sentReview = useRef(false)
   const [showSentModal, setShowSentModal] = useState(false)
   const reviewerNameRef = useRef()
+  const commentRef = useRef()
   const album = useAlbum(albumId)
   const albumPhotos = useAlbumPhotos(albumId)
   const updateAlbum = useUpdateAlbum()
@@ -89,7 +89,8 @@ const Album = () => {
       console.log(`log: ${name}`)
     } else name = album.data.name
 
-    createAlbum.create(album.data.name, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail)
+    console.log('comment', commentRef.current.value)
+    createAlbum.create(album.data.name, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail, commentRef.current.value)
     sentReview.current = true;
     setLocalStorage(true)
   }
@@ -147,7 +148,7 @@ const Album = () => {
                 <label htmlFor="client-name">Your name</label>
                 <input type="text" required name="client-name" ref={reviewerNameRef} />
                 <label htmlFor="comment">Comment (optional)</label>
-                <textarea type="text" name="comment" />
+                <textarea ref={commentRef} type="text" name="comment" />
                 <button type="submit" className={styles.sendReviewBtn}>Send review</button>
               </form>
             </div>
