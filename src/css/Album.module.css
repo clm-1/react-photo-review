@@ -350,6 +350,11 @@
   margin-top: 1rem;
 }
 
+.reviewSent {
+  pointer-events: none;
+  opacity: .5;
+}
+
 @media screen and (min-width: 650px) {
   .albumInfo .albumTitle {
     margin-right: 1rem;

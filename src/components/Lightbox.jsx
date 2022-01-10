@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import styles from '../css/Lightbox.module.css'
 
-const Lightbox = ({ photo, review = false }) => {
+const Lightbox = ({ photo, review = false, reviewSent }) => {
   const { setPhotoToShow, photoToShow, setChosenPhotos, chosenPhotos, currentAlbum, notChosenPhotos, setNotChosenPhotos } = usePhotoContext()
 
   const handleLightboxClick = () => {
@@ -31,13 +31,13 @@ const Lightbox = ({ photo, review = false }) => {
     e.stopPropagation()
     if (chosen && !chosenPhotos.includes(currentAlbum[photoToShow.current])) {
       console.log('photo added to chosen')
-      setNotChosenPhotos(prev => prev.filter(photo => photo !== currentAlbum[photoToShow.current]))
+      setNotChosenPhotos(prev => prev.filter(photo => photo.id !== currentAlbum[photoToShow.current].id))
       setChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
     }
 
     if (!chosen && !notChosenPhotos.includes(currentAlbum[photoToShow.current])) {
       console.log('photo added to NOT chosen')
-      setChosenPhotos(prev => prev.filter(photo => photo !== currentAlbum[photoToShow.current]))
+      setChosenPhotos(prev => prev.filter(photo => photo.id !== currentAlbum[photoToShow.current].id))
       setNotChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
     }
 
@@ -57,7 +57,7 @@ const Lightbox = ({ photo, review = false }) => {
         <div onClick={(e) => handleArrowClick(e, 'right')} className={`${styles.lightboxArrow} ${styles.right}`}>
           <p>{`>`}</p>
         </div>
-        {review &&
+        {review && !reviewSent &&
           <div className={styles.lightBoxControlls}>
             <i onClick={(e) => handleChoiceClick(e, false)} className="far fa-times-circle"></i>
             <i onClick={(e) => handleChoiceClick(e, true)} className="far fa-check-circle"></i>

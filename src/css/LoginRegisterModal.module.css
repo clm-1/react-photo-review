@@ -109,3 +109,15 @@
   opacity: .65;
   line-height: 20px;
 }
+
+/* REVIEW SENT */
+
+.reviewSentMsg h2 {
+  margin-bottom: .5rem;
+}
+
+.reviewSentMsg p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: rgb(15, 109, 112);
+}

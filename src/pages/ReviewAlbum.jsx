@@ -10,10 +10,13 @@ import useUpdateAlbum from '../hooks/useUpdateAlbum'
 import noThumbnail from '../assets/images/no-thumbnail.png'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import { createDateTimeString } from '../helpers/time'
+import SentReviewModal from '../components/SentReviewModal'
 
 const Album = () => {
   const { albumId, ownerId } = useParams()
   const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
+  const [reviewSent, setReviewSent] = useState(false)
+  const [showSentModal, setShowSentModal] = useState(false)
   const reviewerNameRef = useRef()
   const album = useAlbum(albumId)
   const albumPhotos = useAlbumPhotos(albumId)
@@ -21,8 +24,37 @@ const Album = () => {
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
 
+  const setLocalStorage = (reviewSent = false) => {
+    if (!album.data) return
+    const storageObj = {
+      reviewSent,
+      chosenPhotos,
+      notChosenPhotos
+    }
+    console.log('save to storage')
+    localStorage.setItem(albumId, JSON.stringify(storageObj))
+  }
+  
+  const getLocalStorage = () => {
+    const storageObj = JSON.parse(localStorage.getItem(albumId))
+    console.log('from storage:', storageObj)
+    if (storageObj) {
+      setChosenPhotos([...storageObj.chosenPhotos])
+      setNotChosenPhotos([...storageObj.notChosenPhotos])
+    }
+  }
+
   useEffect(() => {
-    console.log(album.data)
+    // setNotChosenPhotos([])
+    // setChosenPhotos([])
+    getLocalStorage()
+
+    return () => {
+     
+    }
+  }, [])
+
+  useEffect(() => {
     if (album.data === null) return navigate('/')
     if (album.data && ownerId) {
       if (album.data.owner !== ownerId) return navigate('/')
@@ -30,14 +62,13 @@ const Album = () => {
   }, [album.data])
 
   useEffect(() => {
-    console.log(photoToShow)
-  }, [photoToShow])
+    setLocalStorage()
+  }, [chosenPhotos, notChosenPhotos])
 
   useEffect(() => {
     console.log('photos: ', albumPhotos.data)
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
     if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
-      console.log('func', updateAlbum.setThumbnail)
       updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
     }
   }, [albumPhotos.data])
@@ -59,14 +90,19 @@ const Album = () => {
     } else name = album.data.name
 
     createAlbum.create(`${name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail)
+    setLocalStorage(true)
     setChosenPhotos([])
     setNotChosenPhotos([])
   }
 
   return (
     <>
+      {showSentModal && <SentReviewModal setShowSentModal={setShowSentModal} />}
       {album.data && albumPhotos.data &&
         <div className={styles.albumPageWrapper}>
+          {reviewSent && <div className={styles.reviewedAlbumMsg}>
+            <p>You have sent a review for this album</p>
+          </div>}
           <div className={styles.albumWrapper}>
             <div className={styles.reviewAlbumHeader}>
               <div className={styles.albumInfo}>
@@ -83,10 +119,10 @@ const Album = () => {
               </div>
             </div>
             <hr />
-            {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} review={true}/>}
-            {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} />}
+            {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} review={true} />}
+            {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} review={true} reviewSent={reviewSent} />}
           </div>
-          <div className={styles.sendReviewWrapper}>
+          <div className={`${styles.sendReviewWrapper} ${reviewSent ? styles.reviewSent : ''}`}>
             <div className={styles.photoReviewStats}>
               {/* <p>{photoReviewError && photoReviewError}</p> */}
               <p>Summary</p>

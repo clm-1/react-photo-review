@@ -35,15 +35,15 @@ const PhotoCard = ({ photo, index, albumId, review }) => {
             <i className="fas fa-check"></i>}
         </div>}
       <div className={`${styles.photoCardImgWrapper}`}>
-        {chosenPhotos.includes(photo) && review &&
+        {chosenPhotos.filter(currPhoto => currPhoto.id === photo.id).length && review ?
           <div className={styles.choiceMark}>
             <i className="fas fa-check-circle"></i>
-          </div>
+          </div> : ''
         }
-        {notChosenPhotos.includes(photo) && review &&
+        {notChosenPhotos.filter(currPhoto => currPhoto.id === photo.id).length && review ?
           <div className={`${styles.choiceMark} ${styles.rejected}`}>
             <i className="fas fa-times-circle"></i>
-          </div>
+          </div> : ''
         }
         <img src={photo.url} alt={photo.name}></img>
         {!review && !createNewAlbum && <button className={styles.deletePhoto} onClick={handleDeletePhoto}><i className="fas fa-trash-alt"></i></button>}
