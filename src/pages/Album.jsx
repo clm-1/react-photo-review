@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import PhotoList from '../components/PhotoList'
 import UploadPhotos from '../components/UploadPhotos'
-import { useAuthContext } from '../contexts/AuthContext'
 import useAlbum from '../hooks/useAlbum'
 import useAlbumPhotos from '../hooks/useAlbumPhotos'
 import styles from '../css/Album.module.css'
@@ -10,10 +9,10 @@ import Lightbox from '../components/Lightbox'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import useDeleteAlbum from '../hooks/useDeleteAlbum'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
-import noThumbnail from '../assets/images/no-thumbnail.png'
 import { createDateTimeString } from '../helpers/time'
 import CreateAlbum from '../components/CreateAlbum'
 import NoContent from '../components/NoContent'
+import Loader from '../components/Loader'
 
 const Album = () => {
   const { albumId } = useParams()
@@ -67,6 +66,7 @@ const Album = () => {
 
   return (
     <>
+    {isDeleting && <Loader />}
       {album.data && albumPhotos.data &&
         <div className={`${styles.albumPageWrapper}`}>
           {album.data && album.data.reviewedBy &&
@@ -79,7 +79,7 @@ const Album = () => {
                 </div>
               }
             </div>}
-          <div className={`${styles.albumWrapper} ${isDeleting ? styles.isDeletingAlbum : ''}`}>
+          <div className={`${styles.albumWrapper}`}>
             <div className={styles.topBar}>
               <p onClick={() => navigate('/albums')}><span>{`<`}</span> Back to albums</p>
               <div className={styles.topBarBtns}>
