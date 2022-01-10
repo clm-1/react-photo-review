@@ -108,8 +108,8 @@ const Album = () => {
               <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
             </div>}
           <UploadPhotos albumId={albumId} />
-          {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} />}
-          {album.data && !album.data.length ? <NoContent album={true} /> : ''}
+          {albumPhotos.data && albumPhotos.data.length ? <PhotoList photos={albumPhotos.data} albumId={albumId} /> : ''}
+          {albumPhotos.data && !albumPhotos.data.length ? <NoContent album={true} /> : ''}
           <hr className={styles.bottomHr} />
           {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false} />}
           {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} />}
