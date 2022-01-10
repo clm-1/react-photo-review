@@ -59,8 +59,8 @@ const Lightbox = ({ photo, review = false, reviewSent }) => {
         </div>
         {review && !reviewSent &&
           <div className={styles.lightBoxControlls}>
-            <i onClick={(e) => handleChoiceClick(e, false)} className="far fa-times-circle"></i>
-            <i onClick={(e) => handleChoiceClick(e, true)} className="far fa-check-circle"></i>
+            <i onClick={(e) => handleChoiceClick(e, false)} className={`far fa-times-circle reject ${styles.reject}`}></i>
+            <i onClick={(e) => handleChoiceClick(e, true)} className={`far fa-check-circle ${styles.approve}`}></i>
           </div>}
       </div>
     </div>

@@ -96,13 +96,42 @@
   z-index: 5;
   font-size: 1.4rem;
   right: 5px;
-  color: rgb(95, 196, 95);
+  display: flex;
+  gap: .4rem;
   text-shadow: 0 0 5px black;
 }
 
-.choiceMark.rejected {
+.choiceMark .approve {
+  color: rgb(95, 196, 95);
+}
+
+.choiceMark .reject {
   color: rgb(233, 17, 17);
 }
+
+.dim {
+  opacity: .5;
+}
+
+.dimImg {
+  opacity: .7;
+}
+
+/* .choiceMark.rejectedWrapper .approved {
+  opacity: .5;
+}
+
+.choiceMark.approvedWrapper .rejected {
+  opacity: .5;
+} */
+
+/* .choiceMark .rejected {
+  color: rgb(233, 17, 17);
+}
+
+.choiceMark .approved {
+  color: rgb(95, 196, 95);
+} */
 
 .deletePhoto {
   position: absolute;

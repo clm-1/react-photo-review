@@ -15,7 +15,9 @@
   position: absolute;
   cursor: pointer;
   width: 80vw;
+  max-width: 1000px;
   height: 80vh;
+  max-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,20 +57,36 @@
 
 .lightBoxControlls {
   position: absolute;
-  /* background: rgba(0, 0, 0, 0.315); */
   bottom: 0;
-  padding: 2rem 2rem; 
   max-width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
-  height: 60px;
+  gap: calc(1.2rem + 2vh - 1vw);
+  margin-bottom: .05rem;
+  height: 10vh;
   border-radius: 20px;
-  transform: translateY(40%);
+  transform: translateY(100%);
 }
 
 .lightBoxControlls i {
-  font-size: 3.5rem;
-  color: rgba(173, 173, 173, 0.63);
+  font-size: clamp(.85rem, calc(.8rem + 4.5vh), 3.5rem);
+}
+
+.lightBoxControlls i.approve {
+  color: rgb(95, 196, 95);
+}
+
+.lightBoxControlls i.reject {
+  color: rgb(221, 44, 44);
+}
+
+
+@media screen and (min-width: 700px) {
+  .lightBoxControlls {
+    gap: calc(2rem + 2vh);
+    height: 10vh;
+    border-radius: 20px;
+    transform: translateY(100%);
+  }
 }
