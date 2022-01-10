@@ -19,6 +19,25 @@
   margin-bottom: .2rem;
 }
 
+.footerContent i {
+  margin-right: .5rem;
+}
+
+.footerContent hr {
+  border: none;
+  border-bottom: 1px solid rgba(208, 230, 227, 0.55);
+  margin-top: -.2rem;
+  width: 110%;
+  transform: translateX(-5%);
+}
+
+.logoLink {
+  font-size: clamp(.9rem, calc(.7rem + 2.5vh), 1.6rem);
+  color: rgb(208, 230, 227);
+  text-decoration: none;
+  font-family: 'Pacifico', cursive;
+}
+
 .footerWrapper h2 {
   font-size: clamp(1rem, calc(.7rem + 2vw), 1.5rem);
 }

@@ -16,22 +16,11 @@ const Navbar = ({ setShowLoginModal }) => {
 
   return (
     <nav className={styles.navbarWrapper}>
-      <NavLink className={styles.logoLink} to="/">imgReview</NavLink>
-      {currentUser
-        ? <div className={styles.navbarUserWrapper}>
-          <button className={styles.navbarUser} onClick={() => setShowDropdown(!showDropdown)}>
-            <p>{currentUser.email}</p>
-            <i className={`fas ${!showDropdown ? 'fa-angle-down' : 'fa-angle-up'}`}></i>
-          </button>
-          {showDropdown ?
-            <div className={styles.dropdownMenu} onClick={() => setShowDropdown(false)}>
-              <NavLink className={styles.menuItem} to="/albums">Albums</NavLink>
-              <button onClick={handleLogout} className={styles.menuItem}>Logout</button>
-            </div> : ''}
-        </div>
-        : <button className={styles.signInBtn} onClick={() => setShowLoginModal(true)}>Sign in</button>
-      }
-
+      <NavLink className={styles.logoLink} to="/"><i className="fas fa-camera-retro"></i>imgReview</NavLink>
+      <div className={styles.navItems}>
+            { currentUser ? <><NavLink to="/albums">My Albums</NavLink>
+            <button onClick={handleLogout}>Logout</button></> : <button className={styles.signInBtn} onClick={() => setShowLoginModal(true)}>Sign in</button>}
+          </div>
     </nav>
   )
 }

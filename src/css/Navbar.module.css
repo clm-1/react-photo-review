@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .navbarWrapper {
   z-index: 2000;
   position: fixed;
@@ -7,11 +9,10 @@
   align-items: center;
   width: 100%;
   max-width: 1400px;
-  background: rgb(41, 47, 49);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-  height: 6vh;
-  min-height: 35px;
-  max-height: 40px;
+  background: rgb(25, 25, 26);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.747);
+  height: 12vh;
+  max-height: 52px;
   padding: 0 1rem;
   color: rgb(208, 230, 227);
 }
@@ -23,72 +24,41 @@
   font-size: .95rem;
 }
 
+.navbarWrapper i {
+  margin-right: .5rem;
+}
+
 .logoLink {
-  font-size: clamp(.7rem, calc(.6rem + 2.5vh), 1.25rem);
+  font-size: clamp(.9rem, calc(.8rem + 2.2vh), 1.3rem);
   color: rgb(208, 230, 227);
   text-decoration: none;
+  font-family: 'Pacifico', cursive;
+  margin-bottom: .3rem;
 }
 
-.navbarUserWrapper {
-  position: relative;
-  width: 200px;
+.navItems {
   display: flex;
-  flex-direction: column;
+  gap: .9rem;
 }
 
-.navbarUser {
-  z-index: 1;
-  background: rgb(41, 47, 49);
+.navItems * {
   color: rgb(208, 230, 227);
-  position: relative;
-  font-size: .9rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: .4rem;
-  padding: .3rem .7rem;
-  border: 1px solid rgb(130, 141, 140);
-  border-radius: 5px;
-}
-
-.navbarUser i {
-  font-size: 1.05rem;
-  position: relative;
-  top: 1px;
-}
-
-.navbarUser p {
-  text-align: left;
-  width: 80%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.dropdownMenu {
-  padding: .5rem .7rem;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  background: rgb(41, 47, 49);
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  border-radius: 0 0 5px 5px;
-  border: 1px solid rgb(130, 141, 140);
-  transform: translateY(97%);
-}
-
-.menuItem {
   background: none;
   border: none;
-  text-align: left;
-  font-size: .95rem;
-  color: rgb(208, 230, 227);
+  font-size: clamp(.7rem, calc(.8rem + .5vh), 1rem);
   text-decoration: none;
-  font-weight: 400;
 }
 
-.menuItem:hover {
-  color: rgb(240, 245, 244);
+.navItems *:hover {
+  color: rgb(234, 241, 240);
+}
+
+@media screen and (min-width: 600px) {
+  .logoLink {
+    font-size: clamp(.9rem, calc(.8rem + 2.5vh), 1.6rem);
+  }
+
+  .navItems * {
+    font-size: clamp(.75rem, calc(.8rem + .7vh), 1.1rem);
+  }
 }

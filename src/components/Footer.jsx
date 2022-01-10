@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from '../css/Footer.module.css'
 
 const Footer = () => {
@@ -8,7 +9,8 @@ const Footer = () => {
         <i className="fas fa-chevron-up"></i>
       </div>
       <div className={styles.footerContent}>
-        <h2>imgReview</h2>
+        <NavLink className={styles.logoLink} to="/"><i className="fas fa-camera-retro"></i>imgReview</NavLink>
+        <hr />
         <p>with react and firebase</p>
       </div>
     </div>
