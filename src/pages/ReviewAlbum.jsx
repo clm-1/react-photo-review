@@ -60,6 +60,7 @@ const Album = () => {
   }, [album.data])
 
   useEffect(() => {
+    console.log('check')
     setLocalStorage()
   }, [chosenPhotos, notChosenPhotos])
 
@@ -75,6 +76,7 @@ const Album = () => {
   const handleSendReview = (e) => {
     e.preventDefault()
 
+    // if (!reviewerNameRef.current.value) return;
     if (!chosenPhotos || !chosenPhotos.length) return setPhotoReviewError('No photos chosen')
     if ((chosenPhotos.length + notChosenPhotos.length) !== albumPhotos.data.length) {
       return setPhotoReviewError('You need to make a choice for each photo')
@@ -142,8 +144,8 @@ const Album = () => {
             </div>
             <div className={styles.photoReviewForm}>
               <form onSubmit={handleSendReview}>
-                <label htmlFor="client-name" required>Your name</label>
-                <input type="text" name="client-name" ref={reviewerNameRef} />
+                <label htmlFor="client-name">Your name</label>
+                <input type="text" required name="client-name" ref={reviewerNameRef} />
                 <label htmlFor="comment">Comment (optional)</label>
                 <textarea type="text" name="comment" />
                 <button type="submit" className={styles.sendReviewBtn}>Send review</button>

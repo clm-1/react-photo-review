@@ -57,7 +57,6 @@ const useDeleteAlbum = (album, photos) => {
       // Finally delete the album doc
       const albumDocRef = doc(db, 'albums', album.id)
       await deleteDoc(albumDocRef)
-      setIsDeleting(false)
       navigate('/albums', { replace: true })
     } catch (error) {
       console.log(error.message)

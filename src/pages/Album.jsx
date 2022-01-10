@@ -28,6 +28,7 @@ const Album = () => {
   const reviewLinkRef = useRef()
 
   useEffect(() => {
+    if (album.data === null) return navigate('/albums')
     if (album.data && !album.data.viewed) {
       updateAlbum.setViewed(albumId)
     }
@@ -37,7 +38,8 @@ const Album = () => {
   // Set thumbnail (if no thumbnail currently exists)
   useEffect(() => {
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
-    if (albumPhotos.data && !albumPhotos.data.length) updateAlbum.setThumbnail(null, album.data.id)
+    if (isDeleting) return
+    if (album.data && albumPhotos.data && !albumPhotos.data.length) updateAlbum.setThumbnail(null, album.data.id)
     if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
       updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
     }
@@ -46,6 +48,10 @@ const Album = () => {
   const handleDeleteAlbum = () => {
     deleteAlbum()
   }
+
+  useEffect(() => {
+
+  },[])
 
   // Change name of album
   const handleNameChange = (e) => {
@@ -64,7 +70,7 @@ const Album = () => {
 
   return (
     <>
-      <div className={`${styles.albumPageWrapper}`}>
+      { album.data && albumPhotos.data && <div className={`${styles.albumPageWrapper}`}>
         {album.data && album.data.reviewedBy &&
           <div className={styles.reviewedAlbumMsg}>
             <p>Album review sent by: {album.data.reviewedBy}</p>
@@ -115,7 +121,7 @@ const Album = () => {
           {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false} />}
           {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} />}
         </div>
-      </div>
+      </div>}
     </>
   )
 }
