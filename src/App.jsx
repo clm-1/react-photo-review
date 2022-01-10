@@ -8,14 +8,15 @@ import Album from './pages/Album'
 import Navbar from './components/Navbar'
 import LoginRegisterModal from './components/LoginRegisterModal'
 import ReviewAlbum from './pages/ReviewAlbum'
+import Footer from './components/Footer'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
 
   return (
     <div className="App">
+      <Navbar setShowLoginModal={setShowLoginModal}/>
       <div className="pageContainer">
-        <Navbar setShowLoginModal={setShowLoginModal}/>
         { showLoginModal && <LoginRegisterModal setShowLoginModal={setShowLoginModal}/>}
         <Routes>
           <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} />} />
@@ -35,7 +36,7 @@ function App() {
           } />
         </Routes>
       </div>
-
+      <Footer />
       <ReactQueryDevtools initialIsOpen={false} />
     </div>
   )

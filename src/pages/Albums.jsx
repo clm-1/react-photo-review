@@ -6,17 +6,20 @@ import useAlbums from '../hooks/useAlbums'
 import styles from '../css/Albums.module.css'
 import { useAuthContext } from '../contexts/AuthContext'
 import { usePhotoContext } from '../contexts/PhotoContext'
+import NoContent from '../components/NoContent'
 
 const Albums = () => {
   const albums = useAlbums()
   const { currentUser } = useAuthContext()
   const { showReviews, setShowReviews } = usePhotoContext()
 
+  console.log(albums.data && albums.data)
+
   // Renders indicator for number of new reviews (not yet viewed by the user)
   const renderNewIndicator = () => {
     const num = albums.data.filter(album => !album.viewed).length
     if (num < 1) return
-    
+
     return (
       <div className={styles.newIndicator}>
         <span>{num < 100 ? num : '99+'}</span>
@@ -27,16 +30,12 @@ const Albums = () => {
   return (
     <div className={styles.albumsWrapper}>
       <div className={styles.userInfo}>
-        <h1>{currentUser.email}</h1>
+        <h1>gb_threepwood@monkeyisland.com</h1>
         {albums.data &&
           <div className={styles.albumsStats}>
             <div className={styles.stat}>
-              <p>{albums.data.filter(album => album.original).length}</p>
-              <p>Albums</p>
-            </div>
-            <div className={styles.stat}>
-              <p>{albums.data.filter(album => !album.original).length}</p>
-              <p>Reviews</p>
+              <p>{albums.data.length}</p>
+              <p>{albums.data.length === 1 ? 'Album' : 'Albums'}</p>
             </div>
           </div>}
       </div>
@@ -50,14 +49,14 @@ const Albums = () => {
         </div>}
         <hr />
         {!showReviews
-          ? <div>
+          ? <>
             <CreateAlbum />
             {albums.data && <AlbumList albums={albums.data.filter(album => album.original)} />}
-          </div>
+          </>
           // Set reviews to true if reviews tab is selected
-          : <div>
+          : <>
             {albums.data && <AlbumList albums={albums.data.filter(album => !album.original)} reviews={true} />}
-          </div>}
+          </>}
       </div>
     </div>
   )

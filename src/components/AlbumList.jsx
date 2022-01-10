@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router-dom'
 import AlbumCard from './AlbumCard'
 import styles from '../css/AlbumList.module.css'
 import ReviewCard from './ReviewCard'
+import NoContent from './NoContent'
 
 const AlbumList = ({ albums, reviews }) => {
-
   return (
-    <div className={`${styles.albumListWrapper} ${reviews ? styles.reviews : ''}`}>
-      { !reviews && albums.map(album => <AlbumCard key={album.id} album={album}/>)}
-      { reviews && albums.map(album => <AlbumCard key={album.id} album={album} review={true}/>)}
-    </div>
+    <>
+      {albums.length ? <div className={`${styles.albumListWrapper} ${reviews ? styles.reviews : ''}`}>
+        {!reviews && albums.map(album => <AlbumCard key={album.id} album={album} />)}
+        {reviews && albums.map(album => <AlbumCard key={album.id} album={album} review={true} />)}
+      </div> : <NoContent reviews={reviews}/>}
+    </>
   )
 }
 

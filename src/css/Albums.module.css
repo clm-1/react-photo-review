@@ -1,5 +1,8 @@
 .albumsWrapper {
   padding: 40px 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .userInfo {
@@ -11,18 +14,26 @@
   align-items: center;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .userInfo h1 {
   position: relative;
   top: -2px;
-  font-weight: 600;
-  font-size: 2rem;
+  font-weight: 500;
+  font-size: clamp(.7rem, calc(.6rem + 3.5vw), 1.7rem);
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .myAlbumsWrapper {
   background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -67,6 +78,7 @@
 .albumsStats {
   display: flex;
   gap: .5rem;
+  margin-top: .5rem;
 }
 
 .albumsStats .stat {
@@ -78,4 +90,21 @@
   align-items: center;
   justify-content: center;
   width: 90px;
+}
+
+@media screen and (min-width: 650px) {
+  .userInfo {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .userInfo h1 {
+    position: relative;
+    top: 4px;
+    margin-right: .5rem;
+    font-size: clamp(.7rem, calc(.6rem + 3.5vw), 2rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

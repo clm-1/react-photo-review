@@ -13,6 +13,7 @@ import useUpdateAlbum from '../hooks/useUpdateAlbum'
 import noThumbnail from '../assets/images/no-thumbnail.png'
 import { createDateTimeString } from '../helpers/time'
 import CreateAlbum from '../components/CreateAlbum'
+import NoContent from '../components/NoContent'
 
 const Album = () => {
   const { albumId } = useParams()
@@ -108,6 +109,7 @@ const Album = () => {
             </div>}
           <UploadPhotos albumId={albumId} />
           {albumPhotos.data && <PhotoList photos={albumPhotos.data} albumId={albumId} />}
+          {album.data && !album.data.length ? <NoContent album={true} /> : ''}
           <hr className={styles.bottomHr} />
           {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false} />}
           {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} />}

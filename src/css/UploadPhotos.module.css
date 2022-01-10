@@ -1,7 +1,7 @@
 .dropzoneWrapper {
-  background-color: #eee;
+  background: rgba(190, 217, 218, 0.123);
 	border-radius: 4px;
-	border: 2px dashed rgb(173, 173, 173);
+	border: 2px dashed rgba(84, 139, 141, 0.507);
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	padding: 2.5rem 2rem;
@@ -11,6 +11,7 @@
 
 .dropzoneWrapper p {
   margin-bottom: 0;
+  color: rgba(11, 84, 87, 0.863);
 }
 
 .dragAccept {

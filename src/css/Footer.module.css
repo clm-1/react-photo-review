@@ -1,0 +1,6 @@
+.footerWrapper {
+  background: black;
+  width: 100%;
+  height: 150px;
+  margin-top: -150px;
+}
