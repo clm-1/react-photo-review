@@ -26,7 +26,7 @@ const useDeletePhotos = () => {
         const docRef = doc(db, 'photos', photo.id)
         await deleteDoc(docRef)
       } else {
-        // Delete document from photos-collection
+        // Delete document from photo album-array
         const docRef = doc(db, 'photos', photo.id)
         updateDoc(docRef, { 'albums': arrayRemove(albumId) })
       }

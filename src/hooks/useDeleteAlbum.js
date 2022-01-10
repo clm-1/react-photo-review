@@ -24,10 +24,10 @@ const useDeleteAlbum = (album, photos) => {
     try {
       // Delete all images that are not in any other albums first
       if (separatedPhotos[1].length) {
-        console.log('gonna delete from storage')
         for(let i = 0; i < separatedPhotos[1].length; i++) {
+          console.log('gonna delete from storage', i)
           console.log('deleting photo')
-          const storageRef = ref(storage, photos[i].path)
+          const storageRef = ref(storage, separatedPhotos[1][i].path)
           await deleteObject(storageRef)
         }
 
@@ -42,7 +42,7 @@ const useDeleteAlbum = (album, photos) => {
         await removePhotoDocsBatch.commit()
       }
 
-      // Only emove album from albums-array for the other photos
+      // Only remove album from albums-array for the other photos
       if (separatedPhotos[0].length) {
         const removeAlbumFromArrayBatch = writeBatch(db)
 

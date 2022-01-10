@@ -37,6 +37,7 @@ const Album = () => {
   // Set thumbnail (if no thumbnail currently exists)
   useEffect(() => {
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
+    if (albumPhotos.data && !albumPhotos.data.length) updateAlbum.setThumbnail(null, album.data.id)
     if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
       updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
     }

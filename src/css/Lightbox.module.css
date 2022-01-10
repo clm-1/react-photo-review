@@ -28,10 +28,12 @@
 }
 
 .lightboxImgWrapper .lightboxArrow {
-  color: white;
+  color: rgb(223, 217, 217);
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 7vw;
+  max-width: 35px;
+  height: 7vw;
+  max-height: 35px;
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.568);
   background: rgba(119, 144, 158, 0.315);
@@ -43,12 +45,12 @@
 
 .lightboxArrow.left {
   left: 0;
-  transform: translateX(-50%);
+  transform: translateX(-120%);
 }
 
 .lightboxArrow.right {
   right: 0;
-  transform: translateX(50%);
+  transform: translateX(120%);
 }
 
 .lightBoxControlls {

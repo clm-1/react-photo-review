@@ -87,11 +87,9 @@ const Album = () => {
       console.log(`log: ${name}`)
     } else name = album.data.name
 
-    createAlbum.create(`${name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail)
+    createAlbum.create(album.data.name, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail)
     sentReview.current = true;
     setLocalStorage(true)
-    // setChosenPhotos([])
-    // setNotChosenPhotos([])
   }
 
   return (
