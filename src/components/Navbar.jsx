@@ -15,8 +15,8 @@ const Navbar = ({ setShowLoginModal }) => {
   }
 
   return (
-    <div className={styles.navbarWrapper}>
-      <NavLink className={styles.logoLink} to="/">A LOGO</NavLink>
+    <nav className={styles.navbarWrapper}>
+      <NavLink className={styles.logoLink} to="/">imgReview</NavLink>
       {currentUser
         ? <div className={styles.navbarUserWrapper}>
           <button className={styles.navbarUser} onClick={() => setShowDropdown(!showDropdown)}>
@@ -32,7 +32,7 @@ const Navbar = ({ setShowLoginModal }) => {
         : <button className={styles.signInBtn} onClick={() => setShowLoginModal(true)}>Sign in</button>
       }
 
-    </div>
+    </nav>
   )
 }
 
