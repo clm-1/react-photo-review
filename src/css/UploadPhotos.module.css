@@ -9,6 +9,11 @@
   position: relative;
 }
 
+.dropzoneWrapper.isUploading {
+  opacity: .8;
+  pointer-events: none;
+}
+
 .dropzoneWrapper p {
   margin-bottom: 0;
   color: rgba(11, 84, 87, 0.863);

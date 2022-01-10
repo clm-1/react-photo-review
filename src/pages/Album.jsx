@@ -49,10 +49,6 @@ const Album = () => {
     deleteAlbum()
   }
 
-  useEffect(() => {
-
-  },[])
-
   // Change name of album
   const handleNameChange = (e) => {
     e.preventDefault()
@@ -70,7 +66,8 @@ const Album = () => {
 
   return (
     <>
-      { album.data && albumPhotos.data && <div className={`${styles.albumPageWrapper}`}>
+      { album.data && albumPhotos.data && 
+      <div className={`${styles.albumPageWrapper}`}>
         {album.data && album.data.reviewedBy &&
           <div className={styles.reviewedAlbumMsg}>
             <p>Album review sent by: {album.data.reviewedBy}</p>

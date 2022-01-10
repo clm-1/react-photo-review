@@ -2,6 +2,11 @@
   padding: 40px 1rem 1rem 1rem;
 }
 
+.albumPageWrapper.isUploading {
+  opacity: .7;
+  pointer-events: none;
+}
+
 .albumWrapper {
   padding: 1rem 1rem 1.5rem 1rem;
   background: whitesmoke;
