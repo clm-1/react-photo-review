@@ -30,7 +30,7 @@ const Albums = () => {
   return (
     <div className={styles.albumsWrapper}>
       <div className={styles.userInfo}>
-        <h1>gb_threepwood@monkeyisland.com</h1>
+        <h1>{currentUser.email}</h1>
         {albums.data &&
           <div className={styles.albumsStats}>
             <div className={styles.stat}>

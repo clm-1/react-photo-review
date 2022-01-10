@@ -95,6 +95,7 @@ const Album = () => {
     createAlbum.create(album.data.name, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail, commentRef.current.value)
     sentReview.current = true;
     setLocalStorage(true)
+    setShowSentModal(true)
   }
 
   return (
