@@ -70,3 +70,9 @@
     font-size: clamp(.75rem, calc(.8rem + .7vh), 1.1rem);
   }
 }
+
+@media screen and (min-width: 1367px) {
+  .navContents {
+    padding: 0 1.4rem;
+  }
+}

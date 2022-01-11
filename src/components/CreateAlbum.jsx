@@ -4,7 +4,7 @@ import useCreateAlbum from '../hooks/useCreateAlbum'
 import styles from "../css/CreateAlbum.module.css"
 import { usePhotoContext } from '../contexts/PhotoContext'
 
-const CreateAlbum = ({ fromAlbum, photoList }) => {
+const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
   const albumNameInputRef = useRef()
@@ -16,6 +16,7 @@ const CreateAlbum = ({ fromAlbum, photoList }) => {
     if (!albumNameInputRef.current.value) return
     if (fromAlbum) {
       if (!chosenPhotos.length) return
+      setIsCreating(true)
       createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos, null, fromAlbum.thumbnail)
       setTimeout(() => {
         navigate('/albums')

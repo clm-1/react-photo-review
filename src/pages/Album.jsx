@@ -22,6 +22,7 @@ const Album = () => {
   const { deleteAlbum, isDeleting } = useDeleteAlbum(album.data, albumPhotos.data)
   const [rename, setRename] = useState(false)
   const [showComment, setShowComment] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
   const updateAlbum = useUpdateAlbum()
   const changeNameInputRef = useRef()
   const navigate = useNavigate()
@@ -66,7 +67,7 @@ const Album = () => {
 
   return (
     <>
-    {isDeleting && <Loader />}
+    {(isDeleting || isCreating) && <Loader />}
       {album.data && albumPhotos.data &&
         <div className={`${styles.albumPageWrapper}`}>
           {album.data && album.data.reviewedBy &&
@@ -122,7 +123,7 @@ const Album = () => {
             {albumPhotos.data && albumPhotos.data.length ? <PhotoList photos={albumPhotos.data} albumId={albumId} /> : ''}
             {albumPhotos.data && !albumPhotos.data.length ? <NoContent album={true} /> : ''}
             <hr className={styles.bottomHr} />
-            {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false} />}
+            {album.data && <CreateAlbum fromAlbum={album.data} photoList={albumPhotos.data ? albumPhotos.data : false} setIsCreating={setIsCreating} />}
             {photoToShow && <Lightbox photo={albumPhotos.data[photoToShow.current]} />}
           </div>
         </div>}
