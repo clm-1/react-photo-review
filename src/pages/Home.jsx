@@ -17,14 +17,16 @@ const Home = ({ setShowLoginModal }) => {
   // Map out the usps with different icons and text content
   const renderUsps = () => {
     const textAndIcons = [
-      ["fas fa-images", 'Quickly create photo albums'],
-      ["fas fa-share-square", 'Easily share with your clients'],
-      ["fas fa-check-square", 'Get back a reviewed album']]
+      ["fas fa-images", 'Class aptent taciti sociosqu maximus mauris'],
+      ["fas fa-share-square", 'Ipsum massa fringilla felis eget pretium eu'],
+      ["fas fa-check-square", 'Mauris varius erat ut cursus consectetur tellus']]
 
     return textAndIcons.map((usp, i) => (
       <div key={i} className={styles.usp}>
-        <i className={usp[0]}></i>
-        <h3>{usp[1]}</h3>
+        <div className={styles.iconWrapper}>
+          <i className={usp[0]}></i>
+        </div>
+        <p>{usp[1]}</p>
       </div>
     ))
   }
@@ -56,7 +58,7 @@ const Home = ({ setShowLoginModal }) => {
         <div className={styles.homepageMessage}>
           {/* <h1>Welcome</h1> */}
           <h1>Welcome!</h1>
-          <h2>We make it easy for photographers to create and share photos with their clients</h2>
+          <h2>Quisque accumsan sodales urna erat ut cursus, lectus eget dignissim</h2>
           <button className={styles.homepageRegisterBtn} onClick={handleGetStartedClick}>Get started</button>
         </div>
       </header>

@@ -91,21 +91,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: .9rem;
   border-radius: 10px;
   opacity: .9;
   width: 100;
-  min-height: 150px;
-  padding: 1.2rem .5rem;
+  /* min-height: 170px; */
+  padding: 1.5rem .5rem;
+}
+
+.uspWrapper .iconWrapper {
+  /* height: 50px; */
+  /* background: chartreuse; */
 }
 
 .usp i {
   font-size: clamp(2rem, calc(2rem + 2.5vh), 4rem);
 }
 
-.usp h3 {
-  font-size: clamp(1rem, calc(.5rem + 1.5vw), 1.2rem);
+.usp p {
+  font-size: clamp(.9rem, calc(.5rem + 1.3vw), 1.2rem);
   font-weight: 600;
   text-align: center;
 }
@@ -183,14 +188,16 @@
   }
 }
 
-@media screen and (min-width: 560px) {
-  .pageInfo {
-    padding: 2rem 2rem;
-  }
-
+@media screen and (min-width: 530px) {
   .uspWrapper {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .pageInfo {
+    padding: 2rem 2rem;
   }
 
   .usp {
@@ -280,11 +287,15 @@
     width: 92%;
     margin: 1rem auto 3rem;
   }
+
+  .usp {
+    padding: 1.8rem .5rem;
+  }
 }
 
 @media screen and (min-width: 1000px) {
   .usp {
-    min-height: 200px;
+    padding: 2.5rem .5rem;
   }
 
   .aboutImgWrapper {
