@@ -53,7 +53,6 @@ const Album = () => {
   // Change name of album
   const handleNameChange = (e) => {
     e.preventDefault()
-    console.log('change name', changeNameInputRef.current.value)
     if (!changeNameInputRef.current.value) return console.log('please enter a name')
     if (changeNameInputRef.current.value === album.data.name) return setRename(false)
     setRename(false)
@@ -116,7 +115,6 @@ const Album = () => {
             </div>
             {album.data &&
               <div className={styles.reviewLinkWrapper}>
-                {/* <h3 className={styles.reviewLinkTitle}>Review link</h3> */}
                 <input ref={reviewLinkRef} name="review-link" readOnly="readonly" className={styles.reviewLink} value={`http://localhost:3000/review-album/${album.data.owner}/${album.data.id}`}></input>
                 <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
               </div>}

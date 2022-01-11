@@ -8,7 +8,6 @@ const UploadPhotos = ({ albumId }) => {
   const uploadPhotos = useUploadPhoto(albumId)
 
   const onDrop = useCallback(acceptedFiles => {
-    console.log('got files', acceptedFiles)
 
     if (!acceptedFiles.length) return
 

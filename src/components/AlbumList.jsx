@@ -1,8 +1,6 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import AlbumCard from './AlbumCard'
 import styles from '../css/AlbumList.module.css'
-import ReviewCard from './ReviewCard'
 import NoContent from './NoContent'
 
 const AlbumList = ({ albums, reviews }) => {

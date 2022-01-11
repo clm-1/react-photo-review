@@ -29,7 +29,6 @@ const RegisterForm = ({ setShowLoginModal }) => {
       setShowLoginModal(false)
       navigate('/albums')
     } catch (error) {
-      console.log(error)
       setIsError(true)
       if (error.message.includes('Password')) setError('Password should be at least 6 characters')
       if (error.message.includes('auth/invalid-email')) setError('Please enter a valid email')

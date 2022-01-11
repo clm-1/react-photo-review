@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import styles from '../css/Lightbox.module.css'
 
@@ -8,10 +8,6 @@ const Lightbox = ({ photo, review = false, reviewSent }) => {
   const handleLightboxClick = () => {
     setPhotoToShow(null)
   }
-
-  useEffect(() => {
-    console.log('chosen: ', chosenPhotos)
-  }, [chosenPhotos])
 
   // Change image shown in lightbox on arrow-click
   const handleArrowClick = (e, direction) => {
@@ -30,13 +26,11 @@ const Lightbox = ({ photo, review = false, reviewSent }) => {
   const handleChoiceClick = (e, chosen) => {
     e.stopPropagation()
     if (chosen && !chosenPhotos.includes(currentAlbum[photoToShow.current])) {
-      console.log('photo added to chosen')
       setNotChosenPhotos(prev => prev.filter(photo => photo.id !== currentAlbum[photoToShow.current].id))
       setChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
     }
 
     if (!chosen && !notChosenPhotos.includes(currentAlbum[photoToShow.current])) {
-      console.log('photo added to NOT chosen')
       setChosenPhotos(prev => prev.filter(photo => photo.id !== currentAlbum[photoToShow.current].id))
       setNotChosenPhotos(prev => [...prev, currentAlbum[photoToShow.current]])
     }

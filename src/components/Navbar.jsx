@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 import styles from '../css/Navbar.module.css'
 
 const Navbar = ({ setShowLoginModal }) => {
   const { currentUser, logout } = useAuthContext()
-  const [showDropdown, setShowDropdown] = useState(false)
   const navigate = useNavigate()
 
   const handleLogout = async () => {
     await logout()
-    setShowDropdown(false)
     navigate('/')
   }
 

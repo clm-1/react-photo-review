@@ -9,7 +9,6 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
   const deletePhoto = useDeletePhotos()
 
   const handlePhotoClick = () => {
-    console.log(index)
     setPhotoToShow({ current: index })
     setPhotoReviewError(null)
   }
@@ -28,13 +27,11 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
   const handleChoiceClick = (e, chosen) => {
     e.stopPropagation()
     if (chosen && !chosenPhotos.includes(photo)) {
-      console.log('photo added to chosen')
       setNotChosenPhotos(prev => prev.filter(currPhoto => photo.id !== currPhoto.id))
       setChosenPhotos(prev => [...prev, photo])
     }
 
     if (!chosen && !notChosenPhotos.includes(photo)) {
-      console.log('photo added to NOT chosen')
       setChosenPhotos(prev => prev.filter(currPhoto => photo.id !== currPhoto.id))
       setNotChosenPhotos(prev => [...prev, photo])
     }

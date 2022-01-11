@@ -8,7 +8,6 @@ const useCreateAlbum = () => {
   const [error, setError] = useState(null)
   const [isError, setIsError] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
 
   // Function for adding album id to all selcted photos after review is sent in
   // Used after the new album is created below with "create"
@@ -32,7 +31,6 @@ const useCreateAlbum = () => {
     setError(null)
     setIsError(false)
     setIsCreating(true)
-    setIsSuccess(false)
 
     try {
       const newAlbum = await addDoc(collectionRef, {
@@ -50,11 +48,9 @@ const useCreateAlbum = () => {
         await addAlbumToPhotos(newAlbum.id, photos)
       }
 
-      setIsSuccess(true)
     } catch (error) {
       setIsError(true)
       setError(error.message)
-      console.log(error.message)
     } finally {
       setIsCreating(false)
     }
@@ -62,6 +58,9 @@ const useCreateAlbum = () => {
 
   return {
     create,
+    error,
+    isError,
+    isCreating,
   }
 }
 

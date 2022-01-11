@@ -56,7 +56,6 @@ const Home = ({ setShowLoginModal }) => {
       <header className={styles.heroWrapper}>
         <img src={heroBG} alt="homepage background" />
         <div className={styles.homepageMessage}>
-          {/* <h1>Welcome</h1> */}
           <h1>Welcome!</h1>
           <h2>Quisque accumsan sodales urna erat ut cursus, lectus eget dignissim</h2>
           <button className={styles.homepageRegisterBtn} onClick={handleGetStartedClick}>Get started</button>

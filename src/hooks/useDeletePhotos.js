@@ -17,10 +17,8 @@ const useDeletePhotos = () => {
     try {
       // Check if photo is in more albums than the current one
       const photoInAlbums = photo.albums.filter(currAlbum => currAlbum !== albumId)
-      console.log(photoInAlbums)
       if (!photoInAlbums.length) {
         // Delete photo from storage if photo is not in other album/s
-        console.log('deleting from storage')
         const storageRef = ref(storage, photo.path)
         await deleteObject(storageRef)
         const docRef = doc(db, 'photos', photo.id)
@@ -31,7 +29,6 @@ const useDeletePhotos = () => {
         updateDoc(docRef, { 'albums': arrayRemove(albumId) })
       }
     } catch (error) {
-      console.log(error.message)
       setIsError(true)
       setError(error.message)
     }
@@ -41,6 +38,8 @@ const useDeletePhotos = () => {
   return {
     deleteOne,
     isDeleting,
+    error,
+    isError
   }
 }
 

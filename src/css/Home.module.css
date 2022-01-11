@@ -67,14 +67,6 @@
   margin-top: 1.2rem;
 }
 
-.homepageRegisterBtn:hover {
-  transform: scale(1.005);
-}
-
-.homepageRegisterBtn:active {
-  transform: scale(1);
-}
-
 .pageInfo {
   padding: 2.5rem 1.8rem;
 }
@@ -91,18 +83,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   gap: .9rem;
   border-radius: 10px;
   opacity: .9;
   width: 100;
-  /* min-height: 170px; */
   padding: 1.5rem .5rem;
-}
-
-.uspWrapper .iconWrapper {
-  /* height: 50px; */
-  /* background: chartreuse; */
 }
 
 .usp i {

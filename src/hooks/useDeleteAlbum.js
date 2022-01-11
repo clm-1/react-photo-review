@@ -25,8 +25,6 @@ const useDeleteAlbum = (album, photos) => {
       // Delete all images that are not in any other albums first
       if (separatedPhotos[1].length) {
         for(let i = 0; i < separatedPhotos[1].length; i++) {
-          console.log('gonna delete from storage', i)
-          console.log('deleting photo')
           const storageRef = ref(storage, separatedPhotos[1][i].path)
           await deleteObject(storageRef)
         }
@@ -59,7 +57,6 @@ const useDeleteAlbum = (album, photos) => {
       await deleteDoc(albumDocRef)
       navigate('/albums', { replace: true })
     } catch (error) {
-      console.log(error.message)
       setIsDeleting(false)
       setIsError(true)
       setError(error.message)
@@ -68,7 +65,9 @@ const useDeleteAlbum = (album, photos) => {
 
   return {
     deleteAlbum,
-    isDeleting
+    isDeleting,
+    error,
+    isError,
   }
 }
 

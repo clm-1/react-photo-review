@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import styles from "../css/CreateAlbum.module.css"
@@ -6,21 +6,28 @@ import { usePhotoContext } from '../contexts/PhotoContext'
 
 const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
   const createAlbum = useCreateAlbum()
-  const navigate = useNavigate()
   const albumNameInputRef = useRef()
-  const {chosenPhotos, setChosenPhotos} = usePhotoContext()
+  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState(null)
+  const { chosenPhotos, setChosenPhotos, setShowReviews } = usePhotoContext()
+  const navigate = useNavigate()
 
   // Create album, send in different data depending on if it's a new album or created based on a previous album
   const handleCreateAlbum = (e) => {
     e.preventDefault()
     if (!albumNameInputRef.current.value) return
     if (fromAlbum) {
-      if (!chosenPhotos.length) return
+      if (!chosenPhotos.length) {
+        setIsError(true)
+        setError('No photos selected')
+        return
+      }
       setIsCreating(true)
       createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos, null, fromAlbum.thumbnail)
       setTimeout(() => {
+        setShowReviews(false)
         navigate('/albums')
-      }, 500)
+      }, 1000)
       return
     }
     createAlbum.create(albumNameInputRef.current.value)
@@ -47,6 +54,10 @@ const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
             </div>
           </div>
         }
+        {fromAlbum && isError &&
+          <div className={styles.errorWrapper}>
+            <p>{error && error}</p>
+          </div>}
         <div className={styles.inputWrapper}>
           <input type="text" name="album-name" ref={albumNameInputRef} placeholder={!fromAlbum ? 'Add new album' : 'Album name'} required />
           <button type="submit">+</button>

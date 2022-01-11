@@ -17,7 +17,7 @@ const SentReviewModal = ({ setShowSentModal }) => {
         <div className={styles.formWrapper}>
           <div className={styles.reviewSentMsg}>
             <h2>Thank you!</h2>
-            <p>Your review was sent successfully</p>
+            <p>Your review was successfully sent</p>
           </div>
         </div>
       </div>

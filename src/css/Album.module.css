@@ -333,7 +333,7 @@
   border: 1px solid black;
   text-align: center;
   padding: 0 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
   min-height: 50px;
   font-size: .83rem;
   font-weight: 600;
@@ -344,8 +344,7 @@
 }
 
 .reviewStatsMsg.notFinished {
-  color: rgb(150, 15, 15);
-  border: 1px solid rgb(150, 15, 15);
+  border: 1px solid black;
 }
 
 .reviewStatsMsg.finished {
@@ -400,6 +399,16 @@
 .reviewSent {
   pointer-events: none;
   opacity: .5;
+}
+
+.errorWrapper {
+  margin-top: 1rem;
+  color: rgb(218, 52, 31);
+  border: 1px solid rgb(218, 52, 31);
+  font-size: .85rem;
+  padding: 1rem .7rem;
+  text-align: center;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 650px) {

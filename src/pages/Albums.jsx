@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import AlbumList from '../components/AlbumList'
 import CreateAlbum from '../components/CreateAlbum'
-import UploadPhotos from '../components/UploadPhotos'
 import useAlbums from '../hooks/useAlbums'
 import styles from '../css/Albums.module.css'
 import { useAuthContext } from '../contexts/AuthContext'
 import { usePhotoContext } from '../contexts/PhotoContext'
-import NoContent from '../components/NoContent'
 
 const Albums = () => {
   const albums = useAlbums()

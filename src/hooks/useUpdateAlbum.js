@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
@@ -12,11 +12,11 @@ const useUpdateAlbum = () => {
     setIsUpdating(true)
 
     try {
-      console.log('albumId', albumId)
       const albumRef = doc(db, 'albums', albumId)
       await updateDoc(albumRef, { name: newName })
     } catch(error) {
-      console.log(error.message)
+      setError(error.message)
+      setIsError(true)
     } finally {
       setIsUpdating(false)
     }
@@ -27,11 +27,11 @@ const useUpdateAlbum = () => {
     setIsUpdating(true)
 
     try {
-      console.log('albumId', albumId)
       const albumRef = doc(db, 'albums', albumId)
       await updateDoc(albumRef, { thumbnail: thumbnailPath })
     } catch(error) {
-      console.log(error.message)
+      setIsError(true)
+      setError(error.message)
     } finally {
       setIsUpdating(false)
     }
@@ -44,14 +44,18 @@ const useUpdateAlbum = () => {
       const albumRef = doc(db, 'albums', albumId)
       await updateDoc(albumRef, { viewed: true })
     } catch(error) {
-      console.log(error.message)
+      setIsError(true)
+      setError(error.message)
     }
   }
 
   return {
     rename,
     setThumbnail,
-    setViewed
+    setViewed,
+    error,
+    isError,
+    isUpdating
   }
 }
 

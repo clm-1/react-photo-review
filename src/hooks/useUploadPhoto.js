@@ -52,7 +52,6 @@ const useUploadPhoto = (albumId) => {
 
       return uploadTask
     } catch (error) {
-      console.log('there was an error with the upload')
       setError('Photo failed to upload:', e.message)
       setIsError(true)
       setIsUploading(false) 

@@ -13,10 +13,10 @@ import SentReviewModal from '../components/SentReviewModal'
 
 const Album = () => {
   const { albumId, ownerId } = useParams()
-  const { photoToShow, setCurrentAlbum, notChosenPhotos, photoReviewError, setPhotoReviewError, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
-  const [reviewSent, setReviewSent] = useState(false)
-  const sentReview = useRef(false)
+  const { photoToShow, setCurrentAlbum, notChosenPhotos, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
+  const [error, setError] = useState(null)
   const [showSentModal, setShowSentModal] = useState(false)
+  const sentReview = useRef(false)
   const reviewerNameRef = useRef()
   const commentRef = useRef()
   const album = useAlbum(albumId)
@@ -32,20 +32,17 @@ const Album = () => {
       chosenPhotos,
       notChosenPhotos
     }
-    console.log('save to storage')
     localStorage.setItem(albumId, JSON.stringify(storageObj))
   }
-  
+
   const getLocalStorage = () => {
     const storageObj = JSON.parse(localStorage.getItem(albumId))
-    console.log('from storage:', storageObj)
     if (storageObj) {
       setChosenPhotos([...storageObj.chosenPhotos])
       setNotChosenPhotos([...storageObj.notChosenPhotos])
 
       if (storageObj.reviewSent) {
         sentReview.current = true
-        setReviewSent(true)
       }
     }
   }
@@ -62,12 +59,10 @@ const Album = () => {
   }, [album.data])
 
   useEffect(() => {
-    console.log('check')
     setLocalStorage()
   }, [chosenPhotos, notChosenPhotos])
 
   useEffect(() => {
-    console.log('photos: ', albumPhotos.data)
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
     if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
       updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
@@ -78,22 +73,15 @@ const Album = () => {
   const handleSendReview = (e) => {
     e.preventDefault()
 
-    // if (!reviewerNameRef.current.value) return;
-    if (!chosenPhotos || !chosenPhotos.length) return setPhotoReviewError('No photos chosen')
+    if (!reviewerNameRef.current.value) return;
+    if (!chosenPhotos || !chosenPhotos.length) return setError('No photos chosen')
     if ((chosenPhotos.length + notChosenPhotos.length) !== albumPhotos.data.length) {
-      return setPhotoReviewError('You need to make a choice for each photo')
+      return setError('You have not yet approved or rejected every photo')
     }
 
-    const date = Date.now()
-    let name;
-    if (!album.data.original) {
-      name = album.data.name.substring(0, album.data.name.lastIndexOf('-'))
-      console.log(`log: ${name}`)
-    } else name = album.data.name
-
-    console.log('comment', commentRef.current.value)
-    createAlbum.create(album.data.name, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail, commentRef.current.value)
+    createAlbum.create(`${album.data.name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail, commentRef.current.value)
     sentReview.current = true;
+    setError(null)
     setLocalStorage(true)
     setShowSentModal(true)
   }
@@ -127,7 +115,6 @@ const Album = () => {
           </div>
           <div className={`${styles.sendReviewWrapper} ${sentReview.current ? styles.reviewSent : ''}`}>
             <div className={styles.photoReviewStats}>
-              {/* <p>{photoReviewError && photoReviewError}</p> */}
               <p>Summary</p>
               <hr />
               <div className={styles.summaryItem}>
@@ -152,6 +139,10 @@ const Album = () => {
                 <input type="text" required name="client-name" ref={reviewerNameRef} />
                 <label htmlFor="comment">Comment (optional)</label>
                 <textarea ref={commentRef} type="text" name="comment" />
+                {error &&
+                  <div className={styles.errorWrapper}>
+                    <p>{error}</p>
+                  </div>}
                 <button type="submit" className={styles.sendReviewBtn}>Send review</button>
               </form>
             </div>
