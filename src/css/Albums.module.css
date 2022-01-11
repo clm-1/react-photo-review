@@ -39,7 +39,7 @@
 
 .myAlbumsHeading {
   display: flex;
-  gap: 1rem;
+  gap: .6rem;
   margin-bottom: .5rem;
 }
 
@@ -49,6 +49,14 @@
   opacity: .8;
   cursor: pointer;
   color: rgb(100, 163, 165);
+}
+
+.myAlbumsHeading h2 span {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  position: relative;
+  top: -2px;
+  left: -3px;
 }
 
 .myAlbumsHeading h2.selected {
@@ -61,6 +69,8 @@
 }
 
 .reviewsTabWrapper .newIndicator {
+  position: relative;
+  left: -2px;
   background: rgb(233, 51, 51);
   border-radius: 50%;
   width: 17px;
@@ -70,7 +80,6 @@
   align-items: center;
   color: whitesmoke;
   font-size: .7rem;
-  margin-left: .2rem;
 }
 
 .albumsStats {

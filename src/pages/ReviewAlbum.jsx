@@ -111,7 +111,7 @@ const Album = () => {
               <div className={styles.albumInfo}>
                 <div>
                   <h1>{album.data.name}</h1>
-                  <h2>{createDateTimeString(album.data.created)}</h2>
+                  <p>{createDateTimeString(album.data.created)}</p>
                 </div>
                 {albumPhotos.data && <div className={styles.albumStats}>
                   <div className={styles.stat}>

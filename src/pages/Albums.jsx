@@ -41,9 +41,9 @@ const Albums = () => {
       </div>
       <div className={styles.myAlbumsWrapper}>
         {albums.data && <div className={styles.myAlbumsHeading}>
-          <h2 className={!showReviews ? styles.selected : ''} onClick={() => setShowReviews(false)}>Albums</h2>
+          <h2 className={!showReviews ? styles.selected : ''} onClick={() => setShowReviews(false)}>Albums <span>({albums.data.filter(album => album.original).length})</span></h2>
           <div className={styles.reviewsTabWrapper}>
-            <h2 className={showReviews ? styles.selected : ''} onClick={() => setShowReviews(true)}>Reviews</h2>
+            <h2 className={showReviews ? styles.selected : ''} onClick={() => setShowReviews(true)}>Reviews <span>({albums.data.filter(album => !album.original).length})</span></h2>
             {renderNewIndicator()}
           </div>
         </div>}
