@@ -2,8 +2,12 @@
   position: relative;
   height: 100%;
   width: 100%;
-  padding: 0 0rem;
   background: whitesmoke;
+}
+
+.homeWrapper hr {
+  width: 85%;
+  margin: 0 auto 2rem;
 }
 
 .heroWrapper {
@@ -105,7 +109,7 @@
 
 .aboutWrapper {
   width: 100%;
-  padding: 0 1.8rem;
+  padding: 0 1.8rem 2rem;
 }
 
 .aboutItem {
@@ -138,8 +142,26 @@
 .aboutText p {
   margin-top: 1.3rem;
   text-align: center;
-  font-size: clamp(.8rem, calc(.45rem + 1vw), 1.2rem);
+  font-size: clamp(.85rem, calc(.45rem + 2vw), 1.2rem);
   max-width: 80%;
+}
+
+.recommendationText {
+  text-align: center;
+  width: 60%;
+  margin: 3rem auto 4.5rem;
+}
+
+.recommendationText p:first-child {
+  font-weight: 500;
+  font-size: clamp(.8rem, calc(.8rem + 2vw), 1.2rem);
+  font-style: italic;
+}
+
+.recommendationText p:last-child {
+  font-weight: 600;
+  margin-top: .4rem;
+  font-size: clamp(.7rem, calc(.8rem + 1.5vw), 1rem);
 }
 
 @media screen and (orientation: landscape) {
@@ -199,6 +221,10 @@
     width: 50%;
     height: 300px;
   }
+
+  .recommendationText {
+    margin: 1rem auto 4rem;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -234,7 +260,7 @@
   }
 
   .aboutWrapper {
-    padding: 0 2.2rem;
+    padding: 0 2.2rem 2.5rem;
   }
 
   .aboutImgWrapper {
@@ -245,6 +271,11 @@
   .aboutText {
     height: calc(320px + 1vh);
     max-height: 350px;
+  }
+
+  .homeWrapper hr {
+    width: 92%;
+    margin: 1rem auto 3rem;
   }
 }
 

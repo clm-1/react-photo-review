@@ -66,12 +66,15 @@ const Home = ({ setShowLoginModal }) => {
           {renderUsps()}
         </div>
       </section>
-
+      <hr />
       <section className={styles.aboutWrapper}>
         {renderInfoImgs()}
       </section>
-
-      <div></div>
+      <hr />
+      <section className={styles.recommendationText}>
+        <p>"Auctor quam sit amet, tristique sapien. Class aptent taciti sociosqu, class aptent taciti sociosqu ad litora torquent per conubia nostra."</p>
+        <p>- A photographer</p>
+      </section>
     </div>
   )
 }
