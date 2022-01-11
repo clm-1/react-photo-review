@@ -95,7 +95,7 @@ const Album = () => {
                   <div className={styles.albumInfo}>
                     <div className={styles.albumTitle}>
                       <h1>{album.data.name}</h1>
-                      <h2>{createDateTimeString(album.data.created)}</h2>
+                      <p>{createDateTimeString(album.data.created)}</p>
                     </div>
                     {albumPhotos.data && <div className={styles.albumStats}>
                       <div className={styles.stat}>
@@ -116,7 +116,8 @@ const Album = () => {
             </div>
             {album.data &&
               <div className={styles.reviewLinkWrapper}>
-                <input ref={reviewLinkRef} readOnly="readonly" className={styles.reviewLink} value={`http://localhost:3000/review-album/${album.data.owner}/${album.data.id}`}></input>
+                {/* <h3 className={styles.reviewLinkTitle}>Review link</h3> */}
+                <input ref={reviewLinkRef} name="review-link" readOnly="readonly" className={styles.reviewLink} value={`http://localhost:3000/review-album/${album.data.owner}/${album.data.id}`}></input>
                 <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
               </div>}
             <UploadPhotos albumId={albumId} />

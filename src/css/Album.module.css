@@ -179,6 +179,7 @@
 
 .reviewLinkWrapper {
   position: relative;
+  margin-top: 2rem;
 }
 
 .reviewLink {
@@ -191,6 +192,19 @@
   width: 100%;
   color: rgba(0, 0, 0, 0.829);
   background: whitesmoke;
+}
+
+.reviewLinkWrapper .reviewLinkTitle,
+.uploadTitle {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.reviewLinkWrapper .reviewLinkTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-110%);
 }
 
 .reviewLinkWrapper button {
@@ -233,7 +247,7 @@
   font-size: clamp(.8rem, calc(.8rem + 2.5vw), 1.7rem);
 }
 
-.albumInfo h2 {
+.albumInfo p {
   font-weight: 400;
   margin-top: .1rem;
   font-style: italic;
