@@ -16,11 +16,13 @@ const Navbar = ({ setShowLoginModal }) => {
 
   return (
     <nav className={styles.navbarWrapper}>
-      <NavLink className={styles.logoLink} to="/"><i className="fas fa-camera-retro"></i>imgReview</NavLink>
-      <div className={styles.navItems}>
-            { currentUser ? <><NavLink to="/albums">My Albums</NavLink>
+      <div className={styles.navContents}>
+        <NavLink className={styles.logoLink} to="/"><i className="fas fa-camera-retro"></i>imgReview</NavLink>
+        <div className={styles.navItems}>
+          {currentUser ? <><NavLink to="/albums">My Albums</NavLink>
             <button onClick={handleLogout}>Logout</button></> : <button className={styles.signInBtn} onClick={() => setShowLoginModal(true)}>Sign in</button>}
-          </div>
+        </div>
+      </div>
     </nav>
   )
 }
