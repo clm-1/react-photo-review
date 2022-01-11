@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { useDropzone } from 'react-dropzone'
 import styles from '../css/UploadPhotos.module.css'

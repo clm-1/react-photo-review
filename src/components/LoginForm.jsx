@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 import styles from '../css/LoginRegisterModal.module.css'
 
-const LoginForm = ({ setRegister, setShowLoginModal }) => {
+const LoginForm = ({ setShowLoginModal }) => {
+  const [isError, setIsError] = useState(false)
   const [loading, setLoading] = useState(false)
   const { setShowRegisterTab } = useAuthContext()
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ const LoginForm = ({ setRegister, setShowLoginModal }) => {
       navigate('/albums')
     } catch (error) {
       console.log(error.message)
+      setIsError(true)
       setLoading(false)
     }
   }
@@ -35,6 +37,10 @@ const LoginForm = ({ setRegister, setShowLoginModal }) => {
         <input type="email" name="email" autoComplete="email" ref={emailRef} />
         <label htmlFor="password">Password</label>
         <input type="password" name="password" autoComplete="current-password" ref={passwordRef} />
+        {isError &&
+          <div className={styles.errorWrapper}>
+            <p>Wrong username or password</p>
+          </div>}
         <button disabled={loading} className={styles.formSubmitBtn} type="submit">Sign in</button>
       </form>
       <div className={styles.modalInfoWrapper}>

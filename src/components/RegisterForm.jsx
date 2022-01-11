@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 import styles from '../css/LoginRegisterModal.module.css'
 
-const RegisterForm = ({ setRegister, setShowLoginModal }) => {
+const RegisterForm = ({ setShowLoginModal }) => {
+  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const emailRef = useRef()
@@ -15,14 +17,23 @@ const RegisterForm = ({ setRegister, setShowLoginModal }) => {
     e.preventDefault()
     setLoading(true)
 
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) return console.log('passwords does not match')
+    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+      setIsError(true)
+      setError('The passwords do not match')
+      setLoading(false)
+      return
+    }
 
     try {
       await register(emailRef.current.value, passwordRef.current.value)
       setShowLoginModal(false)
       navigate('/albums')
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
+      setIsError(true)
+      if (error.message.includes('Password')) setError('Password should be at least 6 characters')
+      if (error.message.includes('auth/invalid-email')) setError('Please enter a valid email')
+      if (error.message.includes('auth/email-already-in-use')) setError('That email is already registered')
       setLoading(false)
     }
   }
@@ -38,6 +49,10 @@ const RegisterForm = ({ setRegister, setShowLoginModal }) => {
         <input type="password" name="password" autoComplete="current-password" ref={passwordRef} required />
         <label htmlFor="confirm-password">Confirm password</label>
         <input type="password" name="confirm-password" autoComplete="current-password" ref={confirmPasswordRef} required />
+        {isError &&
+        <div className={styles.errorWrapper}>
+          <p>{error}</p>
+          </div>}
         <button disabled={loading} className={styles.formSubmitBtn} type="submit">Register</button>
       </form>
       <div className={styles.modalInfoWrapper}>

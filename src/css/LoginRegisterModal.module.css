@@ -57,6 +57,18 @@
   flex-direction: column;
 }
 
+.formWrapper form .errorWrapper {
+  margin-top: 1rem;
+  margin-bottom: -.85rem;
+  color: rgb(218, 52, 31);
+  border: 1px solid rgb(218, 52, 31);
+  font-size: .85rem;
+  padding: 1rem .7rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.459);
+  border-radius: 5px;
+}
+
 .formWrapper label {
   margin-top: .7rem;
 }
