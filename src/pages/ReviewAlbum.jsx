@@ -10,6 +10,7 @@ import useUpdateAlbum from '../hooks/useUpdateAlbum'
 import useCreateAlbum from '../hooks/useCreateAlbum'
 import { createDateTimeString } from '../helpers/time'
 import SentReviewModal from '../components/SentReviewModal'
+import Loader from '../components/Loader'
 
 const Album = () => {
   const { albumId, ownerId } = useParams()
@@ -25,6 +26,8 @@ const Album = () => {
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
 
+  // Set local storage function
+  // Used when chosenPhotos or notChosenPhotos changes (useEffect)
   const setLocalStorage = () => {
     if (!album.data) return
     const storageObj = {
@@ -35,6 +38,7 @@ const Album = () => {
     localStorage.setItem(albumId, JSON.stringify(storageObj))
   }
 
+  // Get local storage data (used on component mount)
   const getLocalStorage = () => {
     const storageObj = JSON.parse(localStorage.getItem(albumId))
     if (storageObj) {
@@ -47,10 +51,14 @@ const Album = () => {
     }
   }
 
+  // Get data from local storage
   useEffect(() => {
     getLocalStorage()
   }, [])
 
+  // Check if there is album data
+  // Check if ownerId from params matches the owner in the fetched album
+  // If checks fail, return to home
   useEffect(() => {
     if (album.data === null) return navigate('/')
     if (album.data && ownerId) {
@@ -58,6 +66,7 @@ const Album = () => {
     }
   }, [album.data])
 
+  // Set local storage when data changes
   useEffect(() => {
     setLocalStorage()
   }, [chosenPhotos, notChosenPhotos])
@@ -79,6 +88,7 @@ const Album = () => {
       return setError('You have not yet approved or rejected every photo')
     }
 
+    // Create new album with all the data from the review (including reviewer name and comment)
     createAlbum.create(`${album.data.name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail, commentRef.current.value)
     sentReview.current = true;
     setError(null)
@@ -88,6 +98,7 @@ const Album = () => {
 
   return (
     <>
+      {(album.isLoading || albumPhotos.isLoading) && <Loader />}
       {showSentModal && <SentReviewModal setShowSentModal={setShowSentModal} />}
       {album.data && albumPhotos.data &&
         <div className={styles.albumPageWrapper}>

@@ -28,6 +28,8 @@ const Album = () => {
   const navigate = useNavigate()
   const reviewLinkRef = useRef()
 
+  // If no album is found, return to albums list page
+  // If album has not been viewed before by the user, update viewed to true now
   useEffect(() => {
     if (album.data === null) return navigate('/albums')
     if (album.data && !album.data.viewed) {
@@ -37,6 +39,7 @@ const Album = () => {
 
   // Set current album in context when data is loaded or changes
   // Set thumbnail (if no thumbnail currently exists)
+  // Set thumbnail to null if there are no photos left in the album
   useEffect(() => {
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
     if (isDeleting) return
@@ -66,7 +69,8 @@ const Album = () => {
 
   return (
     <>
-    {(isDeleting || isCreating) && <Loader />}
+    {/* Check if anything is currently loading and show loader if it is */}
+    {(isDeleting || isCreating || albumPhotos.isLoading || album.isLoading) && <Loader />}
       {album.data && albumPhotos.data &&
         <div className={`${styles.albumPageWrapper}`}>
           {album.data && album.data.reviewedBy &&

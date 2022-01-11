@@ -10,6 +10,7 @@ const useAlbum = (albumId) => {
   }, {
     refetchOnMount: 'always',
     select(snapshot) {
+      // Get id and add to object
       const id = snapshot.id
       return snapshot.exists() ? {id, ...snapshot.data()} : null
     }

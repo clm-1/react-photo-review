@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword, 
   signOut} from 'firebase/auth'
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import Loader from '../components/Loader'
 import { auth } from '../firebase'
 
 const AuthContext = createContext()
@@ -32,7 +33,7 @@ const AuthContextProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    // listen for changes to auth state
+    // Listen for changes to auth state
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user)
       setLoading(false)
@@ -51,7 +52,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={values}>
-      { loading && <div>Loading...</div>}
+      { loading && <Loader />}
       { !loading && children }
     </AuthContext.Provider>
   )

@@ -11,8 +11,6 @@ const Albums = () => {
   const { currentUser } = useAuthContext()
   const { showReviews, setShowReviews } = usePhotoContext()
 
-  console.log(albums.data && albums.data)
-
   // Renders indicator for number of new reviews (not yet viewed by the user)
   const renderNewIndicator = () => {
     const num = albums.data.filter(album => !album.viewed).length

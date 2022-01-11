@@ -7,7 +7,7 @@ const useUpdateAlbum = () => {
   const [isError, setIsError] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
 
-  // Change name for album from Album page
+  // Change name for album from Album page using updateDoc
   const rename = async (newName, albumId) => {
     setIsUpdating(true)
 
@@ -22,7 +22,7 @@ const useUpdateAlbum = () => {
     }
   }
 
-  // Set thumbnail for album
+  // Set thumbnail for album using updateDoc
   const setThumbnail = async (thumbnailPath, albumId) => {
     setIsUpdating(true)
 

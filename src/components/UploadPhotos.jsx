@@ -4,13 +4,12 @@ import { useDropzone } from 'react-dropzone'
 import styles from '../css/UploadPhotos.module.css'
 import useUploadPhoto from '../hooks/useUploadPhoto'
 
+// Dropzone on album page, can upload one or more images
 const UploadPhotos = ({ albumId }) => {
   const uploadPhotos = useUploadPhoto(albumId)
 
   const onDrop = useCallback(acceptedFiles => {
-
     if (!acceptedFiles.length) return
-
     uploadPhotos.upload(acceptedFiles)
   })
 

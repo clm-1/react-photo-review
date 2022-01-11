@@ -44,15 +44,15 @@ const useCreateAlbum = () => {
         comment,
       })
 
+      // Add album to all photos
       if (photos.length) {
         await addAlbumToPhotos(newAlbum.id, photos)
       }
 
     } catch (error) {
+      setIsCreating(false)
       setIsError(true)
       setError(error.message)
-    } finally {
-      setIsCreating(false)
     }
   }
 

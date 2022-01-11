@@ -16,20 +16,23 @@ const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
   const handleCreateAlbum = (e) => {
     e.preventDefault()
     if (!albumNameInputRef.current.value) return
+    // Check if CreateAlbum is rendered on Album page
     if (fromAlbum) {
+      // Set error message if no photos are chosen
       if (!chosenPhotos.length) {
         setIsError(true)
         setError('No photos selected')
         return
       }
       setIsCreating(true)
+      // Create new album and set the new album with some of the data from the old album (that it's based on)
       createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos, null, fromAlbum.thumbnail)
-      setTimeout(() => {
-        setShowReviews(false)
-        navigate('/albums')
-      }, 1000)
+      setShowReviews(false)
+      navigate('/albums')
       return
     }
+
+    // If it's a brand new album, only set the album name here
     createAlbum.create(albumNameInputRef.current.value)
     albumNameInputRef.current.value = ''
   }
@@ -54,6 +57,7 @@ const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
             </div>
           </div>
         }
+        {/* Show error messages if on album page */}
         {fromAlbum && isError &&
           <div className={styles.errorWrapper}>
             <p>{error && error}</p>

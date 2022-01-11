@@ -29,7 +29,7 @@ const useDeleteAlbum = (album, photos) => {
           await deleteObject(storageRef)
         }
 
-        // Remove docs for deleted files
+        // Remove docs for deleted files using writeBatch
         const removePhotoDocsBatch = writeBatch(db)
 
         separatedPhotos[1].forEach(photo => {

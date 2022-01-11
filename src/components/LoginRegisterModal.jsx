@@ -7,6 +7,7 @@ import RegisterForm from './RegisterForm'
 const LoginRegisterModal = ({ setShowLoginModal }) => {
   const { showRegisterTab, setShowRegisterTab } = useAuthContext()
 
+  // Close modal if overlay is clicked
   const handleOverlayClick = (e) => {
     e.stopPropagation()
     if (e.target.id === 'overlay') setShowLoginModal(false)

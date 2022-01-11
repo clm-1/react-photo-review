@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../css/NoContent.module.css'
 
+// No content-message for albums and album pages
 const NoContent = ({ reviews, album }) => {
   return (
     <div className={styles.noContentWrapper}>

@@ -7,8 +7,8 @@ const AlbumList = ({ albums, reviews }) => {
   return (
     <>
       {albums.length ? <div className={`${styles.albumListWrapper} ${reviews ? styles.reviews : ''}`}>
-        {!reviews && albums.map(album => <AlbumCard key={album.id} album={album} />)}
-        {reviews && albums.map(album => <AlbumCard key={album.id} album={album} review={true} />)}
+        {/* Render out album list with reviewer name if reviews is true */}
+        {albums.map(album => <AlbumCard key={album.id} album={album} review={reviews}/>)}
       </div> : <NoContent reviews={reviews}/>}
     </>
   )

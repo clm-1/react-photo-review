@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../css/LoginRegisterModal.module.css'
 
+// This modal pops up after a review was sent
 const SentReviewModal = ({ setShowSentModal }) => {
 
   const handleOverlayClick = (e) => {

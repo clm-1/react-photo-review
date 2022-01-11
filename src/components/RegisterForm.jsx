@@ -17,6 +17,7 @@ const RegisterForm = ({ setShowLoginModal }) => {
     e.preventDefault()
     setLoading(true)
 
+    // Set error and return of the two password inputs do not match
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       setIsError(true)
       setError('The passwords do not match')
@@ -30,6 +31,7 @@ const RegisterForm = ({ setShowLoginModal }) => {
       navigate('/albums')
     } catch (error) {
       setIsError(true)
+      // Set different error messages depending on what error firebase throws
       if (error.message.includes('Password')) setError('Password should be at least 6 characters')
       if (error.message.includes('auth/invalid-email')) setError('Please enter a valid email')
       if (error.message.includes('auth/email-already-in-use')) setError('That email is already registered')

@@ -14,6 +14,7 @@ const useUploadPhoto = (albumId) => {
   // Current image will be used to display which image is currently being uploaded
   const [currentPhoto, setCurrentPhoto] = useState(0)
 
+  // This function is used in the upload-function below
   const uploadPhotos = async (image, transferredBytes, combinedSize) => {
     // Construct filename to save image as
     const fileName = `${Date.now()}-${image.name}`
@@ -22,10 +23,12 @@ const useUploadPhoto = (albumId) => {
     const fullPath = `photos/${currentUser.uid}/${fileName}`
 
     try {
+      // Create storage ref
       const storageRef = ref(storage, fullPath)
 
       const uploadTask = uploadBytesResumable(storageRef, image)
 
+      // Listen for state changes on the uploadTask
       uploadTask.on('state_changed', (uploadTaskSnapshot) => {
         setUploadProgress(Math.round(((transferredBytes + uploadTaskSnapshot.bytesTransferred) / combinedSize) * 100))
       })
@@ -58,6 +61,7 @@ const useUploadPhoto = (albumId) => {
     }
   }
 
+  // Upload one or more images
   const upload = async (images) => {
     setIsUploading(true)
     setIsError(false)
@@ -66,13 +70,17 @@ const useUploadPhoto = (albumId) => {
 
     if (!images) return
 
+    // Keep track of the total size of all images + transferred bytes so far
     let combinedSize = 0
     let transferredBytes = 0
 
+    // Calculate combined size for images
     images.forEach(image => {
       combinedSize += image.size
     })
 
+    // Run uploadPhotos for each file in the array
+    // Update current photo each time (to display which image is currently being uploaded)
     for (let i = 0; i < images.length; i++) {
       await uploadPhotos(images[i], transferredBytes, combinedSize)
       transferredBytes += images[i].size

@@ -8,6 +8,8 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
   const { setPhotoToShow, chosenPhotos, setChosenPhotos, notChosenPhotos, setPhotoReviewError, createNewAlbum, currentAlbum, setNotChosenPhotos } = usePhotoContext()
   const deletePhoto = useDeletePhotos()
 
+  // When clicking a photo in the list, set the photo in context
+  // Information is used by Lightbox-component
   const handlePhotoClick = () => {
     setPhotoToShow({ current: index })
     setPhotoReviewError(null)
@@ -18,12 +20,15 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
     deletePhoto.deleteOne(photo, albumId)
   }
 
+  // Check box above photo on album page (for logged in user)
+  // Can create new album based on checked photos
   const handleCheckBoxClick = (e) => {
     e.stopPropagation()
     if (!chosenPhotos.includes(photo)) setChosenPhotos(prev => [...prev, photo])
     else setChosenPhotos(prev => prev.filter(currPhoto => currPhoto !== photo))
   }
 
+  // Handle click of approve or reject buttons on photo thumbnails (on review page)
   const handleChoiceClick = (e, chosen) => {
     e.stopPropagation()
     if (chosen && !chosenPhotos.includes(photo)) {
@@ -37,6 +42,7 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
     }
   }
 
+  // Render the approve and reject buttons on the photo thumbnails (on review page)
   const renderChoiceBtns = () => {
     const inNotChosen = notChosenPhotos.filter(currPhoto => currPhoto.id === photo.id).length
     const inChosen = chosenPhotos.filter(currPhoto => currPhoto.id === photo.id).length
@@ -50,6 +56,7 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
       )
     }
 
+    // Return slightly different jsx depending on if photo is approved, rejected or undecided
     if (inChosen === 0 && inNotChosen === 0) return renderJsx()
     if (inChosen > 0) return renderJsx(true)
     if (inNotChosen > 0) return renderJsx(false)
