@@ -1,0 +1,48 @@
+.pageNotFoundWrapper {
+  display: flex;
+  padding: 1rem;
+  height: 100%;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.pageNotFoundContent {
+  padding: 2rem 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: whitesmoke;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  flex: 1;
+}
+
+.pageNotFoundContent i {
+  font-size: clamp(2.5rem, calc(1.7rem + 4vh), 3.5rem);
+  margin-bottom: .5rem;
+  color: rgb(21, 122, 126);
+}
+
+.pageNotFoundContent hr {
+  width: 70%;
+  max-width: 200px;
+  border: none;
+  border-bottom: 1px solid rgb(21, 122, 126);
+  margin: 1.2rem;
+}
+
+.pageNotFoundContent p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgb(21, 126, 129);
+}
+
+.pageNotFoundContent button {
+  padding: 1.05rem;
+  font-size: 1.2rem;
+  color: white;
+  background: rgb(26, 147, 151);
+  border: none;
+  border-radius: 5px;
+}

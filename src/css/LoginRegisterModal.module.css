@@ -76,6 +76,14 @@
   margin-top: 1.7rem;
 }
 
+.loginRegisterModalWrapper button.formSubmitBtn:hover {
+  transform: scale(1.005);
+}
+
+.loginRegisterModalWrapper button.formSubmitBtn:active {
+  transform: scale(1);
+}
+
 .modalInfoWrapper {
   display: flex;
   flex-direction: column;

@@ -9,15 +9,16 @@ import Navbar from './components/Navbar'
 import LoginRegisterModal from './components/LoginRegisterModal'
 import ReviewAlbum from './pages/ReviewAlbum'
 import Footer from './components/Footer'
+import PageNotFound from './components/PageNotFound'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
 
   return (
     <div className="App">
-      <Navbar setShowLoginModal={setShowLoginModal}/>
+      <Navbar setShowLoginModal={setShowLoginModal} />
       <div className="pageContainer">
-        { showLoginModal && <LoginRegisterModal setShowLoginModal={setShowLoginModal}/>}
+        {showLoginModal && <LoginRegisterModal setShowLoginModal={setShowLoginModal} />}
         <Routes>
           <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} />} />
           <Route path="/review-album/:ownerId/:albumId" element={<ReviewAlbum />} />
@@ -34,6 +35,8 @@ function App() {
               <Album />
             </RequireAuth>
           } />
+
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
       <Footer />

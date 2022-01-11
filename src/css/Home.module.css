@@ -65,11 +65,14 @@
   border: none;
   border-radius: 5px;
   margin-top: 1.2rem;
-  transition: .1s;
 }
 
 .homepageRegisterBtn:hover {
-  transform: scale(1.01);
+  transform: scale(1.005);
+}
+
+.homepageRegisterBtn:active {
+  transform: scale(1);
 }
 
 .pageInfo {

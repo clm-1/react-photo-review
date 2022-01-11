@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { doc, deleteDoc, writeBatch, arrayRemove } from 'firebase/firestore'
 import { ref, deleteObject } from 'firebase/storage'

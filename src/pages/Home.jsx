@@ -18,7 +18,7 @@ const Home = ({ setShowLoginModal }) => {
   const renderUsps = () => {
     const textAndIcons = [
       ["fas fa-images", 'Quickly create photo albums'],
-      ["fas fa-share-square", 'Share easily with your clients'],
+      ["fas fa-share-square", 'Easily share with your clients'],
       ["fas fa-check-square", 'Get back a reviewed album']]
 
     return textAndIcons.map((usp, i) => (
@@ -55,8 +55,8 @@ const Home = ({ setShowLoginModal }) => {
         <img src={heroBG} alt="homepage background" />
         <div className={styles.homepageMessage}>
           {/* <h1>Welcome</h1> */}
-          <h1>Welcome, photographers!</h1>
-          <h2>We make it easy for you to create and share albums with your clients</h2>
+          <h1>Welcome!</h1>
+          <h2>We make it easy for photographers to create and share photos with their clients</h2>
           <button className={styles.homepageRegisterBtn} onClick={handleGetStartedClick}>Get started</button>
         </div>
       </header>
