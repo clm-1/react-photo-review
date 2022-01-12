@@ -72,6 +72,8 @@ const Album = () => {
   }, [chosenPhotos, notChosenPhotos])
 
   useEffect(() => {
+    setChosenPhotos([])
+    setNotChosenPhotos([])
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
   }, [albumPhotos.data])
 

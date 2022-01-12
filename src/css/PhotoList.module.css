@@ -115,8 +115,8 @@
 }
 
 .dimImg {
-  opacity: .6;
-  filter: brightness(85%);
+  opacity: .55;
+  filter: brightness(70%);
 }
 
 /* .choiceMark.rejectedWrapper .approved {
