@@ -1,5 +1,4 @@
 /* PHOTO LIST */
-
 .listWrapper .selectionBtn {
   padding: .4rem;
   margin-top: 0rem;
@@ -17,6 +16,8 @@
   border-radius: 10px;
 }
 
+
+/* MEDIA QUERIES FOR LIST */
 @media screen and (min-width: 360px) {
   .photoListWrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -36,7 +37,6 @@
 }
 
 /* PHOTO CARD */
-
 .photoCardWrapper {
   width: 100%;
   cursor: pointer;
@@ -110,11 +110,13 @@
 }
 
 .dim {
-  opacity: .5;
+  opacity: .75;
+  filter: saturate(60%);
 }
 
 .dimImg {
-  opacity: .7;
+  opacity: .6;
+  filter: brightness(85%);
 }
 
 /* .choiceMark.rejectedWrapper .approved {
