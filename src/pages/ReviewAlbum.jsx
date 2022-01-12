@@ -73,9 +73,6 @@ const Album = () => {
 
   useEffect(() => {
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
-    if (albumPhotos.data && albumPhotos.data.length && !album.thumbnail) {
-      updateAlbum.setThumbnail(albumPhotos.data[albumPhotos.data.length - 1].url, album.data.id)
-    }
   }, [albumPhotos.data])
 
   // Do checks and then create new album + add the new album to the chosen photos
