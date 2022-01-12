@@ -24,7 +24,9 @@ const AlbumCard = ({ album, review }) => {
     <div className={styles.albumCardWrapper} onClick={handleAlbumClick}>
       <div className={styles.albumCardImgWrapper}>
         { !album.viewed && <div className={styles.newIndicator}></div>}
-        <img src={album.thumbnail ? album.thumbnail : noThumbnail}></img>
+        <img 
+          src={album.thumbnail ? album.thumbnail : noThumbnail} 
+          onError={e => e.currentTarget.src = noThumbnail}/>
       </div>
       <div className={styles.albumCardInfo}>
         <h3 onClick={handleDeleteClick} className={styles.title}>{album.name}</h3>

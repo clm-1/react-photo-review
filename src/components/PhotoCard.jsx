@@ -3,6 +3,7 @@ import { createDateTimeString } from '../helpers/time'
 import styles from '../css/PhotoList.module.css'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import useDeletePhotos from '../hooks/useDeletePhotos'
+import noThumbnail from '../assets/images/no-thumbnail.png'
 
 const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
   const { setPhotoToShow, chosenPhotos, setChosenPhotos, notChosenPhotos, setPhotoReviewError, createNewAlbum, setNotChosenPhotos } = usePhotoContext()
@@ -76,7 +77,7 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
         </div>}
       <div className={`${styles.photoCardImgWrapper}`}>
         {review && !sentReview && renderChoiceBtns()}
-        <img className={`${checkChosenStyle(notChosenPhotos) ? styles.dimImg : ''} ${checkChosenStyle(chosenPhotos) ? styles.chosenImg : ''}`} src={photo.url} alt={photo.name}></img>
+        <img className={`${checkChosenStyle(notChosenPhotos) ? styles.dimImg : ''} ${checkChosenStyle(chosenPhotos) ? styles.chosenImg : ''}`} src={photo.url} alt={photo.name} onError={e => e.currentTarget.src = noThumbnail}></img>
         {!review && !createNewAlbum && <button className={styles.deletePhoto} onClick={handleDeletePhoto}><i className="fas fa-trash-alt"></i></button>}
       </div>
       <div className={styles.photoCardInfo}>
