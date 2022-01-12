@@ -5,6 +5,7 @@ import useAlbums from '../hooks/useAlbums'
 import styles from '../css/Albums.module.css'
 import { useAuthContext } from '../contexts/AuthContext'
 import { usePhotoContext } from '../contexts/PhotoContext'
+import Loader from '../components/Loader'
 
 const Albums = () => {
   const albums = useAlbums()
@@ -24,37 +25,40 @@ const Albums = () => {
   }
 
   return (
-    <div className={styles.albumsWrapper}>
-      <div className={styles.userInfo}>
-        <h2>{currentUser.email}</h2>
-        {albums.data &&
-          <div className={styles.albumsStats}>
-            <div className={styles.stat}>
-              <p>{albums.data.length}</p>
-              <p>{albums.data.length === 1 ? 'Album' : 'Albums'}</p>
+    <>
+      {albums.isLoading && <Loader />}
+      <div className={styles.albumsWrapper}>
+        <div className={styles.userInfo}>
+          <h2>{currentUser.email}</h2>
+          {albums.data &&
+            <div className={styles.albumsStats}>
+              <div className={styles.stat}>
+                <p>{albums.data.length}</p>
+                <p>{albums.data.length === 1 ? 'Album' : 'Albums'}</p>
+              </div>
+            </div>}
+        </div>
+        <div className={styles.myAlbumsWrapper}>
+          {albums.data && <div className={styles.myAlbumsHeading}>
+            <h2 className={!showReviews ? styles.selected : ''} onClick={() => setShowReviews(false)}>Albums <span>({albums.data.filter(album => album.original).length})</span></h2>
+            <div className={styles.reviewsTabWrapper}>
+              <h2 className={showReviews ? styles.selected : ''} onClick={() => setShowReviews(true)}>Reviews <span>({albums.data.filter(album => !album.original).length})</span></h2>
+              {renderNewIndicator()}
             </div>
           </div>}
+          <hr />
+          {!showReviews
+            ? <>
+              <CreateAlbum />
+              {albums.data && <AlbumList albums={albums.data.filter(album => album.original)} />}
+            </>
+            // Set reviews to true if reviews tab is selected
+            : <>
+              {albums.data && <AlbumList albums={albums.data.filter(album => !album.original)} reviews={true} />}
+            </>}
+        </div>
       </div>
-      <div className={styles.myAlbumsWrapper}>
-        {albums.data && <div className={styles.myAlbumsHeading}>
-          <h2 className={!showReviews ? styles.selected : ''} onClick={() => setShowReviews(false)}>Albums <span>({albums.data.filter(album => album.original).length})</span></h2>
-          <div className={styles.reviewsTabWrapper}>
-            <h2 className={showReviews ? styles.selected : ''} onClick={() => setShowReviews(true)}>Reviews <span>({albums.data.filter(album => !album.original).length})</span></h2>
-            {renderNewIndicator()}
-          </div>
-        </div>}
-        <hr />
-        {!showReviews
-          ? <>
-            <CreateAlbum />
-            {albums.data && <AlbumList albums={albums.data.filter(album => album.original)} />}
-          </>
-          // Set reviews to true if reviews tab is selected
-          : <>
-            {albums.data && <AlbumList albums={albums.data.filter(album => !album.original)} reviews={true} />}
-          </>}
-      </div>
-    </div>
+    </>
   )
 }
 
