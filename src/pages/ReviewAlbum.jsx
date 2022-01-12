@@ -102,7 +102,7 @@ const Album = () => {
     }
 
     // Create new album with all the data from the review (including reviewer name and comment)
-    createAlbum.create(`${album.data.name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, album.data.thumbnail, commentRef.current.value)
+    createAlbum.create(`${album.data.name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, chosenPhotos[chosenPhotos.length - 1].url, commentRef.current.value)
     sentReview.current = true;
     setError(null)
     setLocalStorage(true)
