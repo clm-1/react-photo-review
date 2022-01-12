@@ -5,7 +5,7 @@ import { usePhotoContext } from '../contexts/PhotoContext'
 import useDeletePhotos from '../hooks/useDeletePhotos'
 
 const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
-  const { setPhotoToShow, chosenPhotos, setChosenPhotos, notChosenPhotos, setPhotoReviewError, createNewAlbum, currentAlbum, setNotChosenPhotos } = usePhotoContext()
+  const { setPhotoToShow, chosenPhotos, setChosenPhotos, notChosenPhotos, setPhotoReviewError, createNewAlbum, setNotChosenPhotos } = usePhotoContext()
   const deletePhoto = useDeletePhotos()
 
   // When clicking a photo in the list, set the photo in context

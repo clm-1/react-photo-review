@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import PhotoList from '../components/PhotoList'
 import useAlbum from '../hooks/useAlbum'
 import useAlbumPhotos from '../hooks/useAlbumPhotos'
-import styles from '../css/Album.module.css'
 import Lightbox from '../components/Lightbox'
 import { usePhotoContext } from '../contexts/PhotoContext'
 import useUpdateAlbum from '../hooks/useUpdateAlbum'
@@ -11,6 +10,7 @@ import useCreateAlbum from '../hooks/useCreateAlbum'
 import { createDateTimeString } from '../helpers/time'
 import SentReviewModal from '../components/SentReviewModal'
 import Loader from '../components/Loader'
+import styles from '../css/Album.module.css'
 
 const Album = () => {
   const { albumId, ownerId } = useParams()
@@ -51,6 +51,9 @@ const Album = () => {
     }
   }
 
+  // Check if all photos have been either approved or rejected, used for message and when sending in review
+  const checkPhotoChoice = () => (albumPhotos.data.length !== (notChosenPhotos.length + chosenPhotos.length))
+
   // Get data from local storage
   useEffect(() => {
     getLocalStorage()
@@ -83,7 +86,7 @@ const Album = () => {
 
     if (!reviewerNameRef.current.value) return;
     if (!chosenPhotos || !chosenPhotos.length) return setError('No photos chosen')
-    if ((chosenPhotos.length + notChosenPhotos.length) !== albumPhotos.data.length) {
+    if (checkPhotoChoice()) {
       return setError('You have not yet approved or rejected every photo')
     }
 
@@ -107,7 +110,7 @@ const Album = () => {
           <div className={styles.albumWrapper}>
             <div className={styles.reviewAlbumHeader}>
               <div className={styles.albumInfo}>
-                <div>
+                <div className={styles.albumTitle}>
                   <h1>{album.data.name}</h1>
                   <p>{createDateTimeString(album.data.created)}</p>
                 </div>
@@ -139,8 +142,8 @@ const Album = () => {
                 <p>Approved:</p>
                 <p>{chosenPhotos.length}</p>
               </div>
-              <div className={`${styles.reviewStatsMsg} ${albumPhotos.data.length !== (notChosenPhotos.length + chosenPhotos.length) ? styles.notFinished : styles.finished}`}>
-                {albumPhotos.data.length !== (notChosenPhotos.length + chosenPhotos.length) ? <p>You need to approve or reject every photo before sending your review</p> : <p>All set to send in review!</p>}
+              <div className={`${styles.reviewStatsMsg} ${checkPhotoChoice() ? styles.notFinished : styles.finished}`}>
+                {checkPhotoChoice() ? <p>You need to approve or reject every photo before sending your review</p> : <p>All set to send in review!</p>}
               </div>
             </div>
             <div className={styles.photoReviewForm}>
