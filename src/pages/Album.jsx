@@ -119,7 +119,7 @@ const Album = () => {
             </div>
             {album.data &&
               <div className={styles.reviewLinkWrapper}>
-                <input ref={reviewLinkRef} name="review-link" readOnly="readonly" className={styles.reviewLink} value={`http://localhost:3000/review-album/${album.data.owner}/${album.data.id}`}></input>
+                <input ref={reviewLinkRef} name="review-link" readOnly="readonly" className={styles.reviewLink} value={`clm-fed20-photo-review.netlify.app/review-album/${album.data.owner}/${album.data.id}`}></input>
                 <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
               </div>}
             <UploadPhotos albumId={albumId} />
