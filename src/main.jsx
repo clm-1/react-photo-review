@@ -6,6 +6,7 @@ import AuthContextProvider from './contexts/AuthContext'
 import PhotoContextProvider from './contexts/PhotoContext'
 import './index.css'
 import App from './App'
+import ScrollToTop from './components/ScrollToTop'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +26,7 @@ ReactDOM.render(
           <PhotoContextProvider>
 
             <App />
+            <ScrollToTop />
             
           </PhotoContextProvider>
         </AuthContextProvider>
