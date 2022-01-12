@@ -378,8 +378,10 @@
 .photoReviewForm form textarea {
   margin-top: .3rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 1rem;
-  padding: .05rem .4rem;
+  font-size: .88rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  padding: .15rem .45rem;
   resize: none;
   height: 55px;
   background: whitesmoke;

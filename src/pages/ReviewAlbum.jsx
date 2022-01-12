@@ -22,10 +22,8 @@ const Album = () => {
   const commentRef = useRef()
   const album = useAlbum(albumId)
   const albumPhotos = useAlbumPhotos(albumId)
-  const updateAlbum = useUpdateAlbum()
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
-  const albumLength = useRef()
 
   // Set local storage function
   // Used when chosenPhotos or notChosenPhotos changes (useEffect)
@@ -98,11 +96,13 @@ const Album = () => {
     if (!reviewerNameRef.current.value) return;
     if (!chosenPhotos || !chosenPhotos.length) return setError('No photos chosen')
     if (checkPhotoChoice()) {
-      return setError('You have not yet approved or rejected every photo')
+      return setError('You have not approved or rejected every photo yet')
     }
 
+    const thumbnail = chosenPhotos.sort((a, b) => b.created.seconds - a.created.seconds)[chosenPhotos.length - 1].url
+
     // Create new album with all the data from the review (including reviewer name and comment)
-    createAlbum.create(`${album.data.name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, chosenPhotos[chosenPhotos.length - 1].url, commentRef.current.value)
+    createAlbum.create(`${album.data.name}`, album.data.owner, false, chosenPhotos, reviewerNameRef.current.value, thumbnail, commentRef.current.value)
     sentReview.current = true;
     setError(null)
     setLocalStorage(true)

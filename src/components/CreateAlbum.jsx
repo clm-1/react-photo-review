@@ -26,7 +26,9 @@ const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
       }
       setIsCreating(true)
       // Create new album and set the new album with some of the data from the old album (that it's based on)
-      createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos, null, chosenPhotos[chosenPhotos.length - 1].url)
+      const thumbnail = chosenPhotos.sort((a, b) => b.created.seconds - a.created.seconds)[chosenPhotos.length - 1].url
+
+      createAlbum.create(albumNameInputRef.current.value, fromAlbum.owner, true, chosenPhotos, null, thumbnail)
       setShowReviews(false)
       navigate('/albums')
       return
