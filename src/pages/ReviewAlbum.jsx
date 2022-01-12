@@ -14,7 +14,7 @@ import styles from '../css/Album.module.css'
 
 const Album = () => {
   const { albumId, ownerId } = useParams()
-  const { photoToShow, setCurrentAlbum, notChosenPhotos, chosenPhotos, setChosenPhotos, setNotChosenPhotos } = usePhotoContext()
+  const { photoToShow, setCurrentAlbum, notChosenPhotos, chosenPhotos, setChosenPhotos, setNotChosenPhotos, currentAlbum } = usePhotoContext()
   const [error, setError] = useState(null)
   const [showSentModal, setShowSentModal] = useState(false)
   const sentReview = useRef(false)
@@ -25,6 +25,7 @@ const Album = () => {
   const updateAlbum = useUpdateAlbum()
   const createAlbum = useCreateAlbum()
   const navigate = useNavigate()
+  const albumLength = useRef()
 
   // Set local storage function
   // Used when chosenPhotos or notChosenPhotos changes (useEffect)
@@ -74,9 +75,19 @@ const Album = () => {
     setLocalStorage()
   }, [chosenPhotos, notChosenPhotos])
 
+  // If image is deleted by owner while chosen/not chosen by reviewer, remove photo from the array
+  const checkDeletedImage = (array, setArray) => {
+    if (!albumPhotos.data) return
+    array.forEach((photo, i) => {
+      const found = albumPhotos.data.find(albumPhoto => albumPhoto.id === photo.id)
+      if (!found) setArray(prev => prev.filter(currPhoto => currPhoto.id !== photo.id))
+    })
+  }
+
   useEffect(() => {
-    setChosenPhotos([])
-    setNotChosenPhotos([])
+    // Check if an image was removed
+    checkDeletedImage(chosenPhotos, setChosenPhotos)
+    checkDeletedImage(notChosenPhotos, setNotChosenPhotos)
     if (albumPhotos.data) setCurrentAlbum([...albumPhotos.data])
   }, [albumPhotos.data])
 

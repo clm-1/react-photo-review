@@ -53,7 +53,6 @@
   background: rgb(236, 234, 233);
   width: 100%;
   border-radius: 5px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.24);
 }
 
 .photoCardImgWrapper:after {
@@ -68,11 +67,13 @@
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
+  border: 2px solid whitesmoke;
 }
 
 .photoCardInfo {
   padding: .1rem;
   margin-top: .3rem;
+  width: 100%;
 }
 
 .photoCardInfo .title {
@@ -109,31 +110,20 @@
   color: rgb(233, 17, 17);
 }
 
+.photoCardImgWrapper img.chosenImg {
+  border: 2px solid rgb(43, 182, 43);
+}
+
 .dim {
-  opacity: .75;
-  filter: saturate(60%);
+  opacity: .8;
+  filter: saturate(40%);
 }
 
-.dimImg {
-  opacity: .55;
-  filter: brightness(70%);
+.photoCardImgWrapper img.dimImg {
+  opacity: .6;
+  filter: brightness(75%);
+  border: 2px solid rgb(252, 14, 14);
 }
-
-/* .choiceMark.rejectedWrapper .approved {
-  opacity: .5;
-}
-
-.choiceMark.approvedWrapper .rejected {
-  opacity: .5;
-} */
-
-/* .choiceMark .rejected {
-  color: rgb(233, 17, 17);
-}
-
-.choiceMark .approved {
-  color: rgb(95, 196, 95);
-} */
 
 .deletePhoto {
   position: absolute;

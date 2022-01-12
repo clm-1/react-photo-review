@@ -62,6 +62,9 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
     if (inNotChosen > 0) return renderJsx(false)
   }
 
+  // Check style to apply to card
+  const checkChosenStyle = (arrayToCheck) => (arrayToCheck.filter(currPhoto => currPhoto.id === photo.id).length )
+
   return (
     <div
       onClick={handlePhotoClick}
@@ -73,7 +76,7 @@ const PhotoCard = ({ photo, index, albumId, review, sentReview }) => {
         </div>}
       <div className={`${styles.photoCardImgWrapper}`}>
         {review && !sentReview && renderChoiceBtns()}
-        <img className={`${notChosenPhotos.filter(currPhoto => currPhoto.id === photo.id).length ? styles.dimImg : ''}`} src={photo.url} alt={photo.name}></img>
+        <img className={`${checkChosenStyle(notChosenPhotos) ? styles.dimImg : ''} ${checkChosenStyle(chosenPhotos) ? styles.chosenImg : ''}`} src={photo.url} alt={photo.name}></img>
         {!review && !createNewAlbum && <button className={styles.deletePhoto} onClick={handleDeletePhoto}><i className="fas fa-trash-alt"></i></button>}
       </div>
       <div className={styles.photoCardInfo}>
