@@ -56,7 +56,7 @@ const Album = () => {
   // Change name of album
   const handleNameChange = (e) => {
     e.preventDefault()
-    if (!changeNameInputRef.current.value) return console.log('please enter a name')
+    if (!changeNameInputRef.current.value) return
     if (changeNameInputRef.current.value === album.data.name) return setRename(false)
     setRename(false)
     updateAlbum.rename(changeNameInputRef.current.value, album.data.id)

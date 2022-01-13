@@ -65,7 +65,7 @@ const CreateAlbum = ({ fromAlbum, photoList, setIsCreating }) => {
             <p>{error && error}</p>
           </div>}
         <div className={styles.inputWrapper}>
-          <input type="text" name="album-name" ref={albumNameInputRef} placeholder={!fromAlbum ? 'Add new album' : 'Album name'} required />
+          <input type="text" name="album-name" aria-label="Album name input" ref={albumNameInputRef} placeholder={!fromAlbum ? 'Add new album' : 'Album name'} required />
           <button type="submit">+</button>
         </div>
       </form>
