@@ -280,7 +280,7 @@
 
 @media screen and (min-width: 1000px) {
   .usp {
-    padding: 2.5rem .5rem;
+    padding: 4rem .5rem;
   }
 
   .aboutImgWrapper {
@@ -294,15 +294,8 @@
   }
 }
 
-/* @media screen and (orientation: landscape), screen and (min-width: 1050px) {
-  .heroWrapper {
-    margin-top: -.5rem;
-    max-height: calc(75vh - (min(12vh, 52px) - .5rem));
+@media screen and (min-width: 1200px) {
+  .usp {
+    padding: 5rem .5rem;
   }
-} */
-
-/* @media screen and (orientation: portrait), screen and (min-width: 600px) {
-  .heroWrapper {
-    max-height: 600px;
-  }
-} */
+}
