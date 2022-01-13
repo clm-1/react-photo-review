@@ -1,5 +1,5 @@
 import { useFirestoreDocument } from '@react-query-firebase/firestore'
-import { doc, collection } from 'firebase/firestore'
+import { doc } from 'firebase/firestore'
 import { db } from '../firebase'
 
 // Fetch one album from db
