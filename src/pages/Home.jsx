@@ -9,6 +9,7 @@ import pageInfo3 from '../assets/images/page-info-3.jpg'
 const Home = ({ setShowLoginModal }) => {
   const { setShowRegisterTab } = useAuthContext()
 
+  // Show login/register modal on button-click
   const handleGetStartedClick = () => {
     setShowRegisterTab(true)
     setShowLoginModal(true)

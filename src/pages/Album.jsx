@@ -64,12 +64,9 @@ const Album = () => {
     updateAlbum.rename(changeNameInputRef.current.value, album.data.id)
   }
 
-  const handleURLClick = () => {
-    
-  }
-
   // Copy review link to clipboard on button click
   const handleCopyToClipboard = () => {
+    // Set animation css class for review link input field
     setClickedReviewLink(true)
     setTimeout(() => setClickedReviewLink(false), 500) 
     navigator.clipboard.writeText(reviewLinkRef.current.value)

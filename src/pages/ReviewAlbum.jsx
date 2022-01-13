@@ -99,6 +99,7 @@ const Album = () => {
       return setError('You have not approved or rejected every photo yet')
     }
 
+    // Set the thumbnail to the oldest of the chosen photos
     const thumbnail = chosenPhotos.sort((a, b) => b.created.seconds - a.created.seconds)[chosenPhotos.length - 1].url
 
     // Create new album with all the data from the review (including reviewer name and comment)
