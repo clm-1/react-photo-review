@@ -48,17 +48,26 @@
   overflow: hidden;
 }
 
+.albumCardInfo .title::first-letter {
+  text-transform: capitalize;
+}
+
 .albumCardInfo p {
   color: rgb(18, 117, 121);
   margin-top: .15rem;
   font-size: .85rem;
   font-style: italic;
+  position: relative;
+  left: -.030rem;
 }
 
 .albumCardInfo .reviewedBy {
   color: black;
-  opacity: .7;
+  opacity: .8;
+  font-size: .9rem;
   font-style: normal;
+  position: relative;
+  left: 0.020rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
