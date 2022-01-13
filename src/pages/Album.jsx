@@ -27,6 +27,7 @@ const Album = () => {
   const changeNameInputRef = useRef()
   const navigate = useNavigate()
   const reviewLinkRef = useRef()
+  const [clickedReviewLink, setClickedReviewLink] = useState(false)
 
   // If no album is found, return to albums list page
   // If album has not been viewed before by the user, update viewed to true now
@@ -63,8 +64,14 @@ const Album = () => {
     updateAlbum.rename(changeNameInputRef.current.value, album.data.id)
   }
 
+  const handleURLClick = () => {
+    
+  }
+
   // Copy review link to clipboard on button click
   const handleCopyToClipboard = () => {
+    setClickedReviewLink(true)
+    setTimeout(() => setClickedReviewLink(false), 500) 
     navigator.clipboard.writeText(reviewLinkRef.current.value)
   }
 
@@ -128,7 +135,7 @@ const Album = () => {
             </div>
             {album.data &&
               <div className={styles.reviewLinkWrapper}>
-                <input ref={reviewLinkRef} name="review-link" readOnly="readonly" className={styles.reviewLink} value={getReviewURL()}></input>
+                <input ref={reviewLinkRef} name="review-link" readOnly="readonly" className={`${styles.reviewLink} ${clickedReviewLink ? styles.clickedReviewLink : ''}`} value={getReviewURL()}></input>
                 <button onClick={handleCopyToClipboard}><i className="fas fa-paste"></i></button>
               </div>}
             <UploadPhotos albumId={albumId} />

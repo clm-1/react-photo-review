@@ -194,6 +194,22 @@
   background: whitesmoke;
 }
 
+@keyframes clickedLinkAnimation {
+  0% {
+    background: whitesmoke;
+  }
+  15% {
+    background: rgb(201, 223, 224);
+  }
+  100% {
+    background: whitesmoke;
+  }
+}
+
+.clickedReviewLink {
+  animation: clickedLinkAnimation .5s forwards ease-in-out;
+}
+
 .reviewLinkWrapper .reviewLinkTitle,
 .uploadTitle {
   font-weight: 500;
