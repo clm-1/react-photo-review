@@ -19,8 +19,13 @@ const useDeletePhotos = () => {
       const photoInAlbums = photo.albums.filter(currAlbum => currAlbum !== albumId)
       if (!photoInAlbums.length) {
         // Delete photo from storage if photo is not in other album/s
-        const storageRef = ref(storage, photo.path)
-        await deleteObject(storageRef)
+        try {
+          const storageRef = ref(storage, photo.path)
+          await deleteObject(storageRef)
+        } catch (error) {
+          console.log('photo not found')
+        }
+        
         const docRef = doc(db, 'photos', photo.id)
         await deleteDoc(docRef)
       } else {
@@ -33,7 +38,6 @@ const useDeletePhotos = () => {
       setError(error.message)
     }
   }
-
 
   return {
     deleteOne,

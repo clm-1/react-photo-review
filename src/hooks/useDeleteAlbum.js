@@ -24,9 +24,13 @@ const useDeleteAlbum = (album, photos) => {
     try {
       // Delete all images that are not in any other albums first
       if (separatedPhotos[1].length) {
-        for(let i = 0; i < separatedPhotos[1].length; i++) {
-          const storageRef = ref(storage, separatedPhotos[1][i].path)
-          await deleteObject(storageRef)
+        for (let i = 0; i < separatedPhotos[1].length; i++) {
+          try {
+            const storageRef = ref(storage, separatedPhotos[1][i].path)
+            await deleteObject(storageRef)
+          } catch (error) {
+            console.log('photo not found')
+          }
         }
 
         // Remove docs for deleted files using writeBatch
@@ -46,7 +50,7 @@ const useDeleteAlbum = (album, photos) => {
 
         separatedPhotos[0].forEach(photo => {
           const photoRef = doc(db, 'photos', photo.id)
-          removeAlbumFromArrayBatch.update(photoRef, { 'albums': arrayRemove(album.id)})
+          removeAlbumFromArrayBatch.update(photoRef, { 'albums': arrayRemove(album.id) })
         })
 
         removeAlbumFromArrayBatch.commit()

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { db, storage } from '../firebase'
@@ -11,6 +11,7 @@ const useUploadPhoto = (albumId) => {
   const [isUploading, setIsUploading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(null)
+  const isMounted = useRef(true)
   // Current image will be used to display which image is currently being uploaded
   const [currentPhoto, setCurrentPhoto] = useState(0)
 
@@ -57,7 +58,7 @@ const useUploadPhoto = (albumId) => {
     } catch (error) {
       setError('Photo failed to upload:', e.message)
       setIsError(true)
-      setIsUploading(false) 
+      setIsUploading(false)
     }
   }
 
@@ -82,16 +83,25 @@ const useUploadPhoto = (albumId) => {
     // Run uploadPhotos for each file in the array
     // Update current photo each time (to display which image is currently being uploaded)
     for (let i = 0; i < images.length; i++) {
+      if (!isMounted.current) return
       await uploadPhotos(images[i], transferredBytes, combinedSize)
       transferredBytes += images[i].size
-      setCurrentPhoto(prev => prev + 1)
+      if (isMounted.current) setCurrentPhoto(prev => prev + 1)
     }
 
-    setIsUploading(false)
-    setIsSuccess(true)
-    setUploadProgress(null)
-    setCurrentPhoto(0)
+    if (isMounted.current) {
+      setIsUploading(false)
+      setIsSuccess(true)
+      setUploadProgress(null)
+      setCurrentPhoto(0)
+    }
   }
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
 
   return {
     error,
